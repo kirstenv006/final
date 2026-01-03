@@ -70,7 +70,7 @@ def stap3():
 # GENERATE – opslaan in database
 @app.route('/generate')
 def generate():
-    # Data uit session
+    # 1️⃣ Haal alle data uit session
     persona_data = {
         'naam': session.get('naam'),
         'leeftijd': session.get('leeftijd'),
@@ -79,7 +79,7 @@ def generate():
         'interesses': session.get('interesses')
     }
 
-    # Opslaan in database
+    # 2️⃣ Maak een nieuwe Persona
     new_persona = Persona(
         naam=persona_data['naam'],
         leeftijd=int(persona_data['leeftijd']),
@@ -87,12 +87,28 @@ def generate():
         frustraties=persona_data['frustraties'],
         interesses=persona_data['interesses']
     )
+
+    # 3️⃣ Voeg toe aan database
     db.session.add(new_persona)
+
+    # 4️⃣ Sla op (commit)
     db.session.commit()
 
-    # Session voor resultaatpagina
+    # 5️⃣ Zet session data voor result pagina
     session['persona'] = persona_data
+
+    # 6️⃣ Leeg de form data (zodat volgende run leeg is)
+    for key in ['naam', 'leeftijd', 'doelen', 'frustraties', 'interesses']:
+        session.pop(key, None)
+
+    # 7️⃣ Redirect naar resultaatpagina
     return redirect('/result')
+
+# TEST ROUTE – laat laatste 5 persona's zien
+@app.route('/test-db')
+def test_db():
+    personas = Persona.query.order_by(Persona.id.desc()).limit(5).all()
+    return render_template('test_db.html', personas=personas)
 
 # -----------------------------
 # RESULT – toon persona
