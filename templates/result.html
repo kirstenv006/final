@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Hier is je persona!</h2>
+
+<p><strong>Naam:</strong> {{ persona.naam }}</p>
+<p><strong>Leeftijd:</strong> {{ persona.leeftijd }}</p>
+<p><strong>Doelen:</strong> {{ persona.doelen }}</p>
+<p><strong>Frustraties:</strong> {{ persona.frustraties }}</p>
+<p><strong>Interesses:</strong> {{ persona.interesses }}</p>
+
+<button
+    onclick="navigator.clipboard.writeText(`Naam: {{ persona.naam }}\nLeeftijd: {{ persona.leeftijd }}\nDoelen: {{ persona.doelen }}\nFrustraties: {{ persona.frustraties }}\nInteresses: {{ persona.interesses }}`)">
+    Kopiëren
+</button>
+<button onclick="window.location.href='{{ url_for('stap1') }}'">Nieuwe persona maken</button>
+{% endblock %}

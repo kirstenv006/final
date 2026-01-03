@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% set progress = 100 %}
+
+{% block content %}
+<h2>Stap 3: Interesses</h2>
+<form method="POST">
+    <label>Interesses:</label><br>
+    <textarea name="interesses" required>{{ session.get('interesses', '') }}</textarea><br><br>
+
+    <button type="button" onclick="window.location.href='{{ url_for('stap2') }}'">Vorige</button>
+    <button type="submit">Voltooien</button>
+</form>
+{% endblock %}

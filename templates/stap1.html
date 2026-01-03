@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% set progress = 33 %}
+
+{% block content %}
+<h2>Stap 1: Persoonlijke info</h2>
+<form method="POST">
+    <label>Naam:</label><br>
+    <input type="text" name="naam" required value="{{ session.get('naam', '') }}"><br><br>
+
+    <label>Leeftijd:</label><br>
+    <input type="number" name="leeftijd" required value="{{ session.get('leeftijd', '') }}"><br><br>
+
+    <button type="submit">Volgende</button>
+</form>
+{% endblock %}

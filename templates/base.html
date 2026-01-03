@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>{% block title %}Number plate validator{% endblock %}</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    </head>
-    <body>
+<html lang="nl">
 
-        <!-- Navigation bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">Number plate validator</a>
-        </nav>
-    
-        <div class="container mt-5">
-            <!-- Image -->
-            <img src="{{ url_for('static', filename='pizza.png') }}" alt="Pizza">
-    
-            {% block content %}
-            {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>Persona Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Persona Generator</h1>
+        {% if progress %}
+        <div class="progress-bar">
+            <div class="progress" style="width: {{ progress }}%;"></div>
         </div>
-    
-        <!-- Bootstrap JavaScript -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        {% endif %}
+    </header>
 
-    </body>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>CMD Eindproject</p>
+    </footer>
+</body>
+
 </html>

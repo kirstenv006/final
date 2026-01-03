@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Alle opgeslagen persona's</h2>
+
+{% if personas %}
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Naam</th>
+            <th>Leeftijd</th>
+            <th>Doelen</th>
+            <th>Frustraties</th>
+            <th>Interesses</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in personas %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.naam }}</td>
+            <td>{{ p.leeftijd }}</td>
+            <td>{{ p.doelen }}</td>
+            <td>{{ p.frustraties }}</td>
+            <td>{{ p.interesses }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Er zijn nog geen persona's opgeslagen.</p>
+{% endif %}
+
+<br>
+<a href="{{ url_for('stap1') }}"><button>Nieuwe persona maken</button></a>
+{% endblock %}

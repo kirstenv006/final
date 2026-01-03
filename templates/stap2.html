@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% set progress = 66 %}
+
+{% block content %}
+<h2>Stap 2: Doelen & Frustraties</h2>
+<form method="POST">
+    <label>Doelen van de persona:</label><br>
+    <textarea name="doelen" required>{{ session.get('doelen', '') }}</textarea><br><br>
+
+    <label>Frustraties:</label><br>
+    <textarea name="frustraties" required>{{ session.get('frustraties', '') }}</textarea><br><br>
+
+    <button type="button" onclick="window.location.href='{{ url_for('stap1') }}'">Vorige</button>
+    <button type="submit">Volgende</button>
+</form>
+{% endblock %}
