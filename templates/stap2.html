@@ -2,13 +2,13 @@
 {% set progress = 66 %}
 
 {% block content %}
-<h2>Stap 2: Doelen & Frustraties</h2>
+<h2>Stap 2: Werk en school</h2>
 <form method="POST">
-    <label>Doelen van de persona:</label><br>
-    <textarea name="doelen" required>{{ session.get('doelen', '') }}</textarea><br><br>
+    <label>School/studie:</label><br>
+    <textarea name="school" required>{{ session.get('school', '') }}</textarea><br><br>
 
-    <label>Frustraties:</label><br>
-    <textarea name="frustraties" required>{{ session.get('frustraties', '') }}</textarea><br><br>
+    <label>Werk:</label><br>
+    <textarea name="werk" required>{{ session.get('werk', '') }}</textarea><br><br>
 
     <button type="button" onclick="window.location.href='{{ url_for('stap1') }}'">Vorige</button>
     <button type="submit">Volgende</button>

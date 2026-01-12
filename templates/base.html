@@ -3,27 +3,30 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Persona Generator</title>
+    <title>{% block title %}Mijn App{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <header>
-        <h1>Persona Generator</h1>
-        {% if progress %}
-        <div class="progress-bar">
-            <div class="progress" style="width: {{ progress }}%;"></div>
-        </div>
-        {% endif %}
-    </header>
+    <!-- NAVIGATIE -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            {% if 'user_id' in session %}
+            <li><a href="{{ url_for('stap1') }}">Nieuwe Persona</a></li>
+            <li><a href="{{ url_for('personas') }}">Mijn Persona's</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 
-    <main>
+    <!-- CONTENT -->
+    <div class="content">
         {% block content %}{% endblock %}
-    </main>
-
-    <footer>
-        <p>CMD Eindproject</p>
-    </footer>
+    </div>
 </body>
 
 </html>

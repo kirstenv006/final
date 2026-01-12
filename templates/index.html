@@ -1,8 +1,11 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<h2>Welkom bij de Persona Generator!</h2>
+<h1>Welkom bij de Persona Generator</h1>
 <p>Met deze tool maak je stap voor stap een persona voor je CMD-project.</p>
+<p>Kies een optie in het menu of start het maken van een persona.</p>
 <a href="{{ url_for('stap1') }}">
     <button>Maak een persona</button>
 </a>
