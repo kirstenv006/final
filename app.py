@@ -2,28 +2,42 @@ from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 import os
 
+# -----------------------------
+# APP SETUP
+# -----------------------------
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
-# -----------------------------
-# DATABASE CONFIG
-# -----------------------------
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# -----------------------------
-# INIT DB
-# -----------------------------
 db = SQLAlchemy(app)
 
 # -----------------------------
-# MODELS IMPORT
+# MODELS
 # -----------------------------
-from models import Persona
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+
+    personas = db.relationship('Persona', backref='user')
+
+
+class Persona(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    naam = db.Column(db.String(100))
+    leeftijd = db.Column(db.Integer)
+    doelen = db.Column(db.Text)
+    frustraties = db.Column(db.Text)
+    interesses = db.Column(db.Text)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
 
 # -----------------------------
-# CREATE DATABASE (1x)
+# DATABASE AANMAKEN (1x)
 # -----------------------------
 with app.app_context():
     db.create_all()
@@ -32,45 +46,113 @@ with app.app_context():
 # ROUTES
 # -----------------------------
 
-# Startpagina
+# Start
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if 'user_id' in session:
+        return redirect('/stap1')
+    return redirect('/login')
+
+
+# -----------------------------
+# LOGIN
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        user = User.query.filter_by(
+            username=request.form['username'],
+            password=request.form['password']
+        ).first()
+
+        if user:
+            session['user_id'] = user.id
+            return redirect('/stap1')
+
+        return "Login mislukt"
+
+    return render_template('login.html')
+
+
+# -----------------------------
+# REGISTER
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        if User.query.filter_by(username=request.form['username']).first():
+            return "Gebruikersnaam bestaat al"
+
+        user = User(
+            username=request.form['username'],
+            password=request.form['password']
+        )
+        db.session.add(user)
+        db.session.commit()
+
+        session['user_id'] = user.id
+        return redirect('/stap1')
+
+    return render_template('register.html')
+
+
+# -----------------------------
+# LOGOUT
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/login')
+
 
 # -----------------------------
 # STAP 1 – Persoonlijke info
 @app.route('/stap1', methods=['GET', 'POST'])
 def stap1():
+    if 'user_id' not in session:
+        return redirect('/login')
+
     if request.method == 'POST':
         session['naam'] = request.form.get('naam')
         session['leeftijd'] = request.form.get('leeftijd')
         return redirect('/stap2')
+
     return render_template('stap1.html')
+
 
 # -----------------------------
 # STAP 2 – Doelen & frustraties
 @app.route('/stap2', methods=['GET', 'POST'])
 def stap2():
+    if 'user_id' not in session:
+        return redirect('/login')
+
     if request.method == 'POST':
         session['doelen'] = request.form.get('doelen')
         session['frustraties'] = request.form.get('frustraties')
         return redirect('/stap3')
+
     return render_template('stap2.html')
+
 
 # -----------------------------
 # STAP 3 – Interesses
 @app.route('/stap3', methods=['GET', 'POST'])
 def stap3():
+    if 'user_id' not in session:
+        return redirect('/login')
+
     if request.method == 'POST':
         session['interesses'] = request.form.get('interesses')
         return redirect('/generate')
+
     return render_template('stap3.html')
 
+
 # -----------------------------
-# GENERATE – opslaan in database
+# GENERATE – persona opslaan
 @app.route('/generate')
 def generate():
-    # 1️⃣ Haal alle data uit session
+    if 'user_id' not in session:
+        return redirect('/login')
+
     persona_data = {
         'naam': session.get('naam'),
         'leeftijd': session.get('leeftijd'),
@@ -79,54 +161,53 @@ def generate():
         'interesses': session.get('interesses')
     }
 
-    # 2️⃣ Maak een nieuwe Persona
     new_persona = Persona(
         naam=persona_data['naam'],
         leeftijd=int(persona_data['leeftijd']),
         doelen=persona_data['doelen'],
         frustraties=persona_data['frustraties'],
-        interesses=persona_data['interesses']
+        interesses=persona_data['interesses'],
+        user_id=session['user_id']
     )
 
-    # 3️⃣ Voeg toe aan database
     db.session.add(new_persona)
-
-    # 4️⃣ Sla op (commit)
     db.session.commit()
 
-    # 5️⃣ Zet session data voor result pagina
     session['persona'] = persona_data
 
-    # 6️⃣ Leeg de form data (zodat volgende run leeg is)
     for key in ['naam', 'leeftijd', 'doelen', 'frustraties', 'interesses']:
         session.pop(key, None)
 
-    # 7️⃣ Redirect naar resultaatpagina
     return redirect('/result')
 
-# TEST ROUTE – laat laatste 5 persona's zien
-@app.route('/test-db')
-def test_db():
-    personas = Persona.query.order_by(Persona.id.desc()).limit(5).all()
-    return render_template('test_db.html', personas=personas)
 
 # -----------------------------
-# RESULT – toon persona
+# RESULT
 @app.route('/result')
 def result():
+    if 'user_id' not in session:
+        return redirect('/login')
+
     persona = session.get('persona')
     if not persona:
         return redirect('/stap1')
+
     return render_template('result.html', persona=persona)
 
+
 # -----------------------------
-# EXTRA – alle opgeslagen persona’s
+# MIJN PERSONA’S
 @app.route('/personas')
 def personas():
-    personas = Persona.query.all()
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    personas = Persona.query.filter_by(user_id=session['user_id']).all()
     return render_template('personas.html', personas=personas)
+
 
 # -----------------------------
 # RUN SERVER
+# -----------------------------
 if __name__ == '__main__':
     app.run(debug=True)

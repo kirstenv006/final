@@ -1,0 +1,22 @@
+<h1>Mijn Persona’s</h1>
+
+<form method="POST" action="/create-persona">
+    <input name="naam" placeholder="Naam">
+    <input name="leeftijd" placeholder="Leeftijd">
+    <textarea name="doelen" placeholder="Doelen"></textarea>
+    <textarea name="frustraties" placeholder="Frustraties"></textarea>
+    <button>Persona maken</button>
+</form>
+
+<hr>
+
+{% for persona in personas %}
+<div>
+    <h3>{{ persona.naam }}</h3>
+    <p>{{ persona.leeftijd }}</p>
+    <p>{{ persona.doelen }}</p>
+    <p>{{ persona.frustraties }}</p>
+</div>
+{% endfor %}
+
+<a href="/logout">Logout</a>
