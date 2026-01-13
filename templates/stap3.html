@@ -11,6 +11,32 @@
     <label>Frustraties:</label><br>
     <textarea name="frustraties" required>{{ session.get('frustraties') or '' }}</textarea>
     <br><br>
+
+    <label>Persoonlijke eigenschappen</label>
+
+    <div class="slider-wrapper">
+        <label class="slider-label-left">Introver</label>
+        <input type="range" min="1" max="5" value="{{ session.get('extravert', 3) }}" name="extravert">
+        <label class="slider-label-right">Extravert</label>
+    </div>
+
+    <div class="slider-wrapper">
+        <label class="slider-label-left">Praktisch</label>
+        <input type="range" min="1" max="5" value="{{ session.get('creatief', 3) }}" name="creatief">
+        <label class="slider-label-right">Creatief</label>
+    </div>
+
+    <div class="slider-wrapper">
+        <label class="slider-label-left">Analytisch</label>
+        <input type="range" min="1" max="5" value="{{ session.get('intuitief', 3) }}" name="intuitief">
+        <label class="slider-label-right">Intuïtief</label>
+    </div>
+    <div class="slider-wrapper">
+        <label class="slider-label-left">Rustig</label>
+        <input type="range" min="1" max="5" value="{{ session.get('rustig', 3) }}" name="rustig">
+        <label class="slider-label-right">Stressgevoelig</label>
+    </div>
+
     <button type="submit">Voltooien</button>
 </form>
 {% endblock %}

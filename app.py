@@ -147,6 +147,11 @@ def stap3():
     if request.method == 'POST':
         session['doelen'] = request.form.get('doelen', '')
         session['frustraties'] = request.form.get('frustraties', '')
+        session['extravert'] = request.form.get('extravert', 3)
+        session['creatief'] = request.form.get('creatief', 3)
+        session['intuitief'] = request.form.get('intuïtief', 3)
+        session['stress'] = request.form.get('stress', 3)
+
         return redirect('/generate')
 
     return render_template('stap3.html')
@@ -167,6 +172,10 @@ def generate():
         werk=session.get('werk'),
         doelen=session.get('doelen'),
         frustraties=session.get('frustraties'),
+        extravert=int(session.get('extravert', 3)),
+        creatief=int(session.get('creatief', 3)),
+        intuitief=int(session.get('intuitief', 3)),
+        stress=int(session.get('stress', 3)),
         user_id=session['user_id']
     )
 
@@ -174,7 +183,7 @@ def generate():
     db.session.commit()
 
     # Session opschonen
-    for key in ['naam', 'geslacht', 'leeftijd', 'school', 'werk', 'doelen', 'frustraties']:
+    for key in ['naam', 'geslacht', 'leeftijd', 'school', 'werk', 'doelen', 'frustraties', 'extravert', 'creatief', 'intuitief', 'stress']:
         session.pop(key, None)
 
     return redirect('/result')
