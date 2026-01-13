@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, session
-from flask_sqlalchemy import SQLAlchemy
 import os
+
+from extensions import db
+from models import User, Persona
 
 # -----------------------------
 # APP SETUP
@@ -12,39 +14,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
-
-# -----------------------------
-# MODELS
-# -----------------------------
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(200), nullable=False)
-
-    personas = db.relationship('Persona', backref='user')
-
-
-class Persona(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-
-    naam = db.Column(db.String(100))
-    geslacht = db.Column(db.String(20))
-    leeftijd = db.Column(db.Integer)
-
-    school = db.Column(db.String(100))
-    werk = db.Column(db.String(100))
-
-    doelen = db.Column(db.Text)
-    frustraties = db.Column(db.Text)
-
-    extravert = db.Column(db.Integer)
-    creatief = db.Column(db.Integer)
-    intuitief = db.Column(db.Integer)
-    stress = db.Column(db.Integer)
-
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
+db.init_app(app)
 
 # -----------------------------
 # DATABASE AANMAKEN
@@ -143,7 +113,7 @@ def stap2():
 
 
 # -----------------------------
-# STAP 3 – Doelen & frustraties
+# STAP 3 – Eigenschappen, doelen & frustraties
 @app.route('/stap3', methods=['GET', 'POST'])
 def stap3():
     if 'user_id' not in session:
@@ -152,10 +122,11 @@ def stap3():
     if request.method == 'POST':
         session['doelen'] = request.form.get('doelen', '')
         session['frustraties'] = request.form.get('frustraties', '')
-        session['extravert'] = request.form.get('extravert', 3)
-        session['creatief'] = request.form.get('creatief', 3)
-        session['intuitief'] = request.form.get('intuitief', 3)
-        session['stress'] = request.form.get('stress', 3)
+
+        session['extravert'] = int(request.form.get('extravert', 3))
+        session['creatief'] = int(request.form.get('creatief', 3))
+        session['intuitief'] = int(request.form.get('intuitief', 3))
+        session['stress'] = int(request.form.get('stress', 3))
 
         return redirect('/generate')
 
@@ -169,7 +140,7 @@ def generate():
     if 'user_id' not in session:
         return redirect('/login')
 
-    new_persona = Persona(
+    persona = Persona(
         naam=session.get('naam'),
         geslacht=session.get('geslacht'),
         leeftijd=int(session.get('leeftijd')) if session.get('leeftijd') else None,
@@ -177,18 +148,23 @@ def generate():
         werk=session.get('werk'),
         doelen=session.get('doelen'),
         frustraties=session.get('frustraties'),
-        extravert=int(session.get('extravert', 3)),
-        creatief=int(session.get('creatief', 3)),
-        intuitief=int(session.get('intuitief', 3)),
-        stress=int(session.get('stress', 3)),
+        extravert=session.get('extravert'),
+        creatief=session.get('creatief'),
+        intuitief=session.get('intuitief'),
+        stress=session.get('stress'),
         user_id=session['user_id']
     )
 
-    db.session.add(new_persona)
+    db.session.add(persona)
     db.session.commit()
 
     # Session opschonen
-    for key in ['naam', 'geslacht', 'leeftijd', 'school', 'werk', 'doelen', 'frustraties', 'extravert', 'creatief', 'intuitief', 'stress']:
+    for key in [
+        'naam', 'geslacht', 'leeftijd',
+        'school', 'werk',
+        'doelen', 'frustraties',
+        'extravert', 'creatief', 'intuitief', 'stress'
+    ]:
         session.pop(key, None)
 
     return redirect('/result')

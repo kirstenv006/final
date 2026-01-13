@@ -13,11 +13,10 @@
 <p><strong>Extravert:</strong> {{ persona.extravert }}/5</p>
 <p><strong>Creatief:</strong> {{ persona.creatief }}/5</p>
 <p><strong>Intuïtief:</strong> {{ persona.intuitief }}/5</p>
-<p><strong>Stressgevoelig:</strong> {{ persona.stress }}/5</p>
 
 
 <button
-    onclick="navigator.clipboard.writeText(`Naam: {{ persona.naam }}\nGeslacht: {{ persona.geslacht }}\nLeeftijd: {{ persona.leeftijd }}\nSchool: {{ persona.school}}\nWerk: {{ persona.werk}}\nDoelen: {{ persona.doelen }}\nFrustraties: {{ persona.frustraties }}\nExtravert: {{ persona.extravert }}/5\nCreatief: {{ persona.creatief }}/5\nIntuïtief: {{ persona.intuitief }}/5\nStressgevoelig: {{ persona.rustig }}/5`)">
+    onclick="navigator.clipboard.writeText(`Naam: {{ persona.naam }}\nGeslacht: {{ persona.geslacht }}\nLeeftijd: {{ persona.leeftijd }}\nSchool: {{ persona.school}}\nWerk: {{ persona.werk}}\nDoelen: {{ persona.doelen }}\nFrustraties: {{ persona.frustraties }}\nExtravert: {{ persona.extravert }}/5\nCreatief: {{ persona.creatief }}/5\nIntuïtief: {{ persona.intuitief }}/5\nStressgevoelig: {{ persona.stress }}/5`)">
     Kopiëren
 </button>
 <button onclick="window.location.href='{{ url_for('stap1') }}'">Nieuwe persona maken</button>

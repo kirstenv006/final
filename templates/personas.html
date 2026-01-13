@@ -18,13 +18,14 @@
             <th>Extravert</th>
             <th>Creatief</th>
             <th>Intuïtief</th>
-            <th>Stressgevoelig</th>
+            <th>Stress</th>
 
         </tr>
     </thead>
     <tbody>
         {% for p in personas %}
         <tr>
+            <td>{{ p.id }}</td>
             <td>{{ p.naam }}</td>
             <td>{{ p.geslacht }}</td>
             <td>{{ p.leeftijd }}</td>
