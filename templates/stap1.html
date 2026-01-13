@@ -10,6 +10,22 @@
     <label>Leeftijd:</label><br>
     <input type="number" name="leeftijd" required value="{{ session.get('leeftijd', '') }}"><br><br>
 
+    <label>Geslacht:</label>
+    <div class="gender-buttons">
+        <input type="radio" id="man" name="geslacht" value="man" {% if session.get('geslacht')=='man' %}checked{% endif
+            %}>
+        <label for="man">Man</label>
+
+        <input type="radio" id="vrouw" name="geslacht" value="vrouw" {% if session.get('geslacht')=='vrouw' %}checked{%
+            endif %}>
+        <label for="vrouw">Vrouw</label>
+
+        <input type="radio" id="non-binair" name="geslacht" value="non-binair" {% if
+            session.get('geslacht')=='non-binair' %}checked{% endif %}>
+        <label for="non-binair">Non-binair</label>
+    </div>
+
+
     <button type="submit">Volgende</button>
 </form>
 {% endblock %}

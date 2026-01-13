@@ -4,11 +4,13 @@
 {% block content %}
 <h2>Stap 3: Interesses</h2>
 <form method="POST">
-    <label>Doelen van de persona:</label><br>
-    <textarea name="doelen" required>{{ session.get('doelen', '') }}</textarea><br><br>
+    <label>Doelen:</label><br>
+    <textarea name="doelen" required>{{ session.get('doelen') or '' }}</textarea>
+    <br><br>
 
     <label>Frustraties:</label><br>
-    <textarea name="frustraties" required>{{ session.get('frustraties', '') }}</textarea><br><br>
+    <textarea name="frustraties" required>{{ session.get('frustraties') or '' }}</textarea>
+    <br><br>
     <button type="submit">Voltooien</button>
 </form>
 {% endblock %}

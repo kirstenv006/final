@@ -27,17 +27,22 @@ class User(db.Model):
 
 class Persona(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+
     naam = db.Column(db.String(100))
+    geslacht = db.Column(db.String(20))
     leeftijd = db.Column(db.Integer)
+
+    school = db.Column(db.String(100))
+    werk = db.Column(db.String(100))
+
     doelen = db.Column(db.Text)
     frustraties = db.Column(db.Text)
-    interesses = db.Column(db.Text)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 # -----------------------------
-# DATABASE AANMAKEN (1x)
+# DATABASE AANMAKEN
 # -----------------------------
 with app.app_context():
     db.create_all()
@@ -46,7 +51,6 @@ with app.app_context():
 # ROUTES
 # -----------------------------
 
-# Start
 @app.route('/')
 def index():
     if 'user_id' in session:
@@ -110,37 +114,39 @@ def stap1():
         return redirect('/login')
 
     if request.method == 'POST':
-        session['naam'] = request.form.get('naam')
-        session['leeftijd'] = request.form.get('leeftijd')
+        session['naam'] = request.form.get('naam', '')
+        session['geslacht'] = request.form.get('geslacht', '')
+        session['leeftijd'] = request.form.get('leeftijd', '')
         return redirect('/stap2')
 
     return render_template('stap1.html')
 
 
 # -----------------------------
-# STAP 2 – Doelen & frustraties
+# STAP 2 – School & werk
 @app.route('/stap2', methods=['GET', 'POST'])
 def stap2():
     if 'user_id' not in session:
         return redirect('/login')
 
     if request.method == 'POST':
-        session['doelen'] = request.form.get('doelen')
-        session['frustraties'] = request.form.get('frustraties')
+        session['school'] = request.form.get('school', '')
+        session['werk'] = request.form.get('werk', '')
         return redirect('/stap3')
 
     return render_template('stap2.html')
 
 
 # -----------------------------
-# STAP 3 – Interesses
+# STAP 3 – Doelen & frustraties
 @app.route('/stap3', methods=['GET', 'POST'])
 def stap3():
     if 'user_id' not in session:
         return redirect('/login')
 
     if request.method == 'POST':
-        session['interesses'] = request.form.get('interesses')
+        session['doelen'] = request.form.get('doelen', '')
+        session['frustraties'] = request.form.get('frustraties', '')
         return redirect('/generate')
 
     return render_template('stap3.html')
@@ -153,29 +159,22 @@ def generate():
     if 'user_id' not in session:
         return redirect('/login')
 
-    persona_data = {
-        'naam': session.get('naam'),
-        'leeftijd': session.get('leeftijd'),
-        'doelen': session.get('doelen'),
-        'frustraties': session.get('frustraties'),
-        'interesses': session.get('interesses')
-    }
-
     new_persona = Persona(
-        naam=persona_data['naam'],
-        leeftijd=int(persona_data['leeftijd']),
-        doelen=persona_data['doelen'],
-        frustraties=persona_data['frustraties'],
-        interesses=persona_data['interesses'],
+        naam=session.get('naam'),
+        geslacht=session.get('geslacht'),
+        leeftijd=int(session.get('leeftijd')) if session.get('leeftijd') else None,
+        school=session.get('school'),
+        werk=session.get('werk'),
+        doelen=session.get('doelen'),
+        frustraties=session.get('frustraties'),
         user_id=session['user_id']
     )
 
     db.session.add(new_persona)
     db.session.commit()
 
-    session['persona'] = persona_data
-
-    for key in ['naam', 'leeftijd', 'doelen', 'frustraties', 'interesses']:
+    # Session opschonen
+    for key in ['naam', 'geslacht', 'leeftijd', 'school', 'werk', 'doelen', 'frustraties']:
         session.pop(key, None)
 
     return redirect('/result')
@@ -188,7 +187,10 @@ def result():
     if 'user_id' not in session:
         return redirect('/login')
 
-    persona = session.get('persona')
+    persona = Persona.query.filter_by(
+        user_id=session['user_id']
+    ).order_by(Persona.id.desc()).first()
+
     if not persona:
         return redirect('/stap1')
 

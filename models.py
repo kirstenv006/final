@@ -11,10 +11,13 @@ class User(db.Model):
 class Persona(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     naam = db.Column(db.String(100))
+    geslacht = db.Column(db.String(20))
     leeftijd = db.Column(db.Integer)
+    school = db.Column(db.Text)
+    werk = db.Column(db.Text)
     doelen = db.Column(db.Text)
     frustraties = db.Column(db.Text)
-    interesses = db.Column(db.Text)
+    
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
