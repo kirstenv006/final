@@ -18,11 +18,9 @@ class Persona(db.Model):
     doelen = db.Column(db.Text)
     frustraties = db.Column(db.Text)
     extravert = db.Column(db.Integer)
-creatief = db.Column(db.Integer)
-intuitief = db.Column(db.Integer)
-stress = db.Column(db.Integer)
-
-    
+    creatief = db.Column(db.Integer)
+    intuitief = db.Column(db.Integer)
+    stress = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

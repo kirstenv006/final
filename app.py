@@ -38,6 +38,11 @@ class Persona(db.Model):
     doelen = db.Column(db.Text)
     frustraties = db.Column(db.Text)
 
+    extravert = db.Column(db.Integer)
+    creatief = db.Column(db.Integer)
+    intuitief = db.Column(db.Integer)
+    stress = db.Column(db.Integer)
+
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
@@ -149,7 +154,7 @@ def stap3():
         session['frustraties'] = request.form.get('frustraties', '')
         session['extravert'] = request.form.get('extravert', 3)
         session['creatief'] = request.form.get('creatief', 3)
-        session['intuitief'] = request.form.get('intuïtief', 3)
+        session['intuitief'] = request.form.get('intuitief', 3)
         session['stress'] = request.form.get('stress', 3)
 
         return redirect('/generate')

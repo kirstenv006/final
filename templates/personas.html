@@ -9,21 +9,34 @@
         <tr>
             <th>ID</th>
             <th>Naam</th>
+            <th>Geslacht</th>
             <th>Leeftijd</th>
             <th>Doelen</th>
             <th>Frustraties</th>
-            <th>Interesses</th>
+            <th>School/studie</th>
+            <th>Werk</th>
+            <th>Extravert</th>
+            <th>Creatief</th>
+            <th>Intuïtief</th>
+            <th>Stressgevoelig</th>
+
         </tr>
     </thead>
     <tbody>
         {% for p in personas %}
         <tr>
-            <td>{{ p.id }}</td>
             <td>{{ p.naam }}</td>
+            <td>{{ p.geslacht }}</td>
             <td>{{ p.leeftijd }}</td>
             <td>{{ p.doelen }}</td>
             <td>{{ p.frustraties }}</td>
-            <td>{{ p.interesses }}</td>
+            <td>{{ p.school }}</td>
+            <td>{{ p.werk }}</td>
+            <td>{{ p.extravert }}/5</td>
+            <td>{{ p.creatief }}/5</td>
+            <td>{{ p.intuitief }}/5</td>
+            <td>{{ p.stress }}/5</td>
+
         </tr>
         {% endfor %}
     </tbody>
