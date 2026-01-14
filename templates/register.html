@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Registreren</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='aanmeld.css') }}">
 </head>
 
 <body>
-    <div class="register-container">
-        <form method="POST" class="register-card">
+    <div class="info-container">
+        <form method="POST" class="info-kaart">
             <h2>Registreren</h2>
+            <p class="tekst">Maak een account aan om zelf persona's te maken</p>
 
             <div class="form-groep">
                 <label>Gebruikersnaam</label>
@@ -24,7 +25,7 @@
 
             <button type="submit">Registreren</button>
 
-            <p class="register"> Al een account? <a href="/login">Inloggen</a></p>
+            <p class="verwijs"> Al een account? <a href="/login">Inloggen</a></p>
         </form>
 
 </body>

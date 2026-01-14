@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Inloggen</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='aanmeld.css') }}">
 </head>
 
 <body>
 
-    <div class="login-container">
-        <form method="POST" class="login-card">
+    <div class="info-container">
+        <form method="POST" class="info-kaart">
             <h2>Inloggen</h2>
-
+            <p class="tekst">Login om je gemaakte persona's te bekijken</p>
             <div class="form-groep">
                 <label>Gebruikersnaam</label>
                 <input name="username" placeholder="Gebruikersnaam" required>
@@ -25,7 +25,7 @@
 
             <button type="submit">Login</button>
 
-            <p class="register">Nog geen account? <a href="/register">Account maken</a></p>
+            <p class="verwijs">Nog geen account? <a href="/register">Account maken</a></p>
         </form>
     </div>
 

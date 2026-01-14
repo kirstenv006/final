@@ -1,31 +1,33 @@
 * {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
     margin: 0;
     height: 100vh;
     background: linear-gradient(135deg, #667eea, #764ba2);
+    /* background: #297999;
+    background: linear-gradient(90deg, rgba(41, 121, 153, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%); */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.login-container {
+.info-container {
     width: 100%;
     max-width: 400px;
     padding: 20px;
 }
 
-.login-card {
+.info-kaart {
     background: white;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-.login-card h2 {
+.info-kaart h2 {
     text-align: center;
     margin-bottom: 25px;
 }
@@ -52,12 +54,14 @@ body {
 .form-groep input:focus {
     outline: none;
     border-color: #667eea;
+    /* background: #2A7B9B; */
 }
 
 button {
     width: 100%;
     padding: 12px;
     background: #667eea;
+    /* background: #2A7B9B; */
     border: none;
     border-radius: 8px;
     color: white;
@@ -68,15 +72,21 @@ button {
 
 button:hover {
     background: #5a67d8;
+    /* background: #1D5970; */
 }
 
-.register {
+.verwijs {
     margin-top: 15px;
     font-size: 13px;
     text-align: center;
 }
 
-.register a {
+.verwijs a {
     color: #667eea;
     text-decoration: none;
+}
+
+.tekst {
+    text-align: center;
+    margin-bottom: 20px;
 }
