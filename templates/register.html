@@ -1,6 +1,32 @@
-<form method="POST">
-    <input name="username" placeholder="Gebruikersnaam">
-    <input name="password" type="password" placeholder="Wachtwoord">
-    <button>Registreren</button>
-</form>
-<a href="/login">Login</a>
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registreren</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+</head>
+
+<body>
+    <div class="register-container">
+        <form method="POST" class="register-card">
+            <h2>Registreren</h2>
+
+            <div class="form-groep">
+                <label>Gebruikersnaam</label>
+                <input name="username" placeholder="Gebruikersnaam" required>
+            </div>
+
+            <div class="form-groep">
+                <label>Wachtwoord</label>
+                <input name="password" type="password" placeholder="Wachtwoord" required>
+            </div>
+
+            <button type="submit">Registreren</button>
+
+            <p class="register"> Al een account? <a href="/login">Inloggen</a></p>
+        </form>
+
+</body>
+
+</html>
