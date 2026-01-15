@@ -6,9 +6,8 @@
 body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    /* background: #297999;
-    background: linear-gradient(90deg, rgba(41, 121, 153, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%); */
+    background: #297999;
+    background: linear-gradient(90deg, rgba(41, 121, 153, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,16 +51,13 @@ body {
 }
 
 .form-groep input:focus {
-    outline: none;
-    border-color: #667eea;
-    /* background: #2A7B9B; */
+    outline: #2A7B9B;
 }
 
 button {
     width: 100%;
     padding: 12px;
-    background: #667eea;
-    /* background: #2A7B9B; */
+    background: #2A7B9B;
     border: none;
     border-radius: 8px;
     color: white;
@@ -71,8 +67,7 @@ button {
 }
 
 button:hover {
-    background: #5a67d8;
-    /* background: #1D5970; */
+    background: #1D5970;
 }
 
 .verwijs {
@@ -82,7 +77,7 @@ button:hover {
 }
 
 .verwijs a {
-    color: #667eea;
+    color: #1D5970;
     text-decoration: none;
 }
 

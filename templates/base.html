@@ -27,6 +27,18 @@
     <div class="content">
         {% block content %}{% endblock %}
     </div>
+
+    {% if step is defined %}
+    <div class="steps">
+        <div class="step {% if step > 1 %}completed{% elif step == 1 %}active{% endif %}">1</div>
+        <div class="step {% if step > 2 %}completed{% elif step == 2 %}active{% endif %}">2</div>
+        <div class="step {% if step > 3 %}completed{% elif step == 3 %}active{% endif %}">3</div>
+    </div>
+    {% endif %}
+
+
+
+
 </body>
 
 </html>

@@ -51,3 +51,41 @@ nav a {
     border-radius: 50%;
     cursor: pointer;
 }
+
+.steps {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 15px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 999px;
+
+    z-index: 1000;
+}
+
+
+.step {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step.completed {
+    background: #1D5970;
+    color: white;
+}
+
+.step.active {
+    background: #2A7B9B;
+    color: white;
+    transform: scale(1.3);
+}

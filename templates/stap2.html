@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-{% set progress = 66 %}
 
 {% block content %}
 <h2>Stap 2: Werk en school</h2>
 <form method="POST">
+    <!-- School/studie -->
     <label>School/studie:</label><br>
     <textarea name="school" required>{{ session.get('school', '') }}</textarea><br><br>
 
+    <!-- Werk -->
     <label>Werk:</label><br>
     <textarea name="werk" required>{{ session.get('werk', '') }}</textarea><br><br>
 

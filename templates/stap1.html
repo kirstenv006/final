@@ -1,19 +1,22 @@
 {% extends "base.html" %}
-{% set progress = 33 %}
+
 
 {% block content %}
 <h2>Stap 1: Persoonlijke info</h2>
 <form method="POST">
+    <!-- Naam -->
     <label>Naam:</label><br>
     <input type="text" name="naam" required value="{{ session.get('naam', '') }}"><br><br>
 
+    <!-- Leeftijd -->
     <label>Leeftijd:</label><br>
     <input type="number" name="leeftijd" required value="{{ session.get('leeftijd', '') }}"><br><br>
 
+    <!-- Geslacht -->
     <label>Geslacht:</label>
     <div class="gender-buttons">
-        <input type="radio" id="man" name="geslacht" value="man" {% if session.get('geslacht')=='man' %}checked{% endif
-            %}>
+        <input type="radio" id="man" name="geslacht" value="man" required {% if session.get('geslacht')=='man'
+            %}checked{% endif %}>
         <label for="man">Man</label>
 
         <input type="radio" id="vrouw" name="geslacht" value="vrouw" {% if session.get('geslacht')=='vrouw' %}checked{%

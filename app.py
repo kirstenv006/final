@@ -94,7 +94,7 @@ def stap1():
         session['leeftijd'] = request.form.get('leeftijd', '')
         return redirect('/stap2')
 
-    return render_template('stap1.html')
+    return render_template("stap1.html", step=1)
 
 
 # -----------------------------
@@ -109,7 +109,7 @@ def stap2():
         session['werk'] = request.form.get('werk', '')
         return redirect('/stap3')
 
-    return render_template('stap2.html')
+    return render_template("stap2.html", step=2)
 
 
 # -----------------------------
@@ -130,7 +130,7 @@ def stap3():
 
         return redirect('/generate')
 
-    return render_template('stap3.html')
+    return render_template("stap3.html", step=3)
 
 
 # -----------------------------
