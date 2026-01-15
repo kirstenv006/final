@@ -1,17 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Stap 2: Werk en school</h2>
-<form method="POST">
-    <!-- School/studie -->
-    <label>School/studie:</label><br>
-    <textarea name="school" required>{{ session.get('school', '') }}</textarea><br><br>
+<div class="form-container">
+    <div class="form-binnenkant">
+        <h2>Stap 2: Werk en school</h2>
+        <form method="POST">
+            <!-- School/studie -->
+            <div class="groep">
+                <label for="school">School/studie:</label>
+                <input type="text" id="school" name="school" required value="{{ session.get('school', '') }}">
+            </div>
 
-    <!-- Werk -->
-    <label>Werk:</label><br>
-    <textarea name="werk" required>{{ session.get('werk', '') }}</textarea><br><br>
+            <!-- Werk -->
+            <div class="groep">
+                <label for="werk">Werk:</label>
+                <input type="text" id="werk" name="werk" required value="{{ session.get('werk', '') }}">
+            </div>
 
-    <button type="button" onclick="window.location.href='{{ url_for('stap1') }}'">Vorige</button>
-    <button type="submit">Volgende</button>
-</form>
+
+            <button type="button" onclick="window.location.href='{{ url_for('stap1') }}'">Vorige</button>
+            <button type="submit">Volgende</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

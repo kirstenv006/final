@@ -1,51 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Stap 3: Doelen & Persoonlijke eigenschappen</h2>
+<div class="form-container">
+    <div class="form-binnenkant">
+        <h2>Stap 3: Doelen & Persoonlijke eigenschappen</h2>
 
-<form method="POST">
-    <!-- Doelen -->
-    <label for="doelen">Doelen:</label><br>
-    <textarea id="doelen" name="doelen" required>{{ session.get('doelen', '') }}</textarea>
-    <br><br>
+        <form method="POST">
+            <!-- Doelen -->
+            <div class="groep">
+                <label for="doelen">Doelen:</label><br>
+                <input type="text" id="doelen" name="doelen" required>{{ session.get('doelen', '') }}</input>
+            </div>
 
-    <!-- Frustraties -->
-    <label for="frustraties">Frustraties:</label><br>
-    <textarea id="frustraties" name="frustraties" required>{{ session.get('frustraties', '') }}</textarea>
-    <br><br>
+            <!-- Frustraties -->
+            <div class="groep">
+                <label for="frustraties">Frustraties:</label><br>
+                <input type="text" id="frustraties" name="frustraties" required>{{ session.get('frustraties', '')
+                }}</input>
+            </div>
 
-    <!-- Persoonlijke eigenschappen -->
-    <label>Persoonlijke eigenschappen:</label><br><br>
+            <!-- Persoonlijke eigenschappen -->
+            <div class="groep">
+                <label>Persoonlijke eigenschappen:</label>
 
-    <div class="slider-wrapper">
-        <label class="slider-label-left">Introvert</label>
-        <input type="range" min="1" max="5" value="{{ session.get('extravert', 3) }}" name="extravert"
-            oninput="this.nextElementSibling.innerText = this.value">
-        <label class="slider-label-right">Extravert</label>
+
+                <div class="slider-wrapper">
+                    <label class="slider-label-left">Introvert</label>
+                    <input type="range" min="1" max="5" value="{{ session.get('extravert', 3) }}" name="extravert">
+                    <label class="slider-label-right">Extravert</label>
+                </div>
+
+                <div class="slider-wrapper">
+                    <label class="slider-label-left">Praktisch</label>
+                    <input type="range" min="1" max="5" value="{{ session.get('creatief', 3) }}" name="creatief">
+                    <label class="slider-label-right">Creatief</label>
+                </div>
+
+                <div class="slider-wrapper">
+                    <label class="slider-label-left">Analytisch</label>
+                    <input type="range" min="1" max="5" value="{{ session.get('intuitief', 3) }}" name="intuitief">
+                    <label class="slider-label-right">Intuïtief</label>
+                </div>
+
+                <div class="slider-wrapper">
+                    <label class="slider-label-left">Rustig</label>
+                    <input type="range" min="1" max="5" value="{{ session.get('stress', 3) }}" name="stress">
+                    <label class="slider-label-right">Stressgevoelig</label>
+                </div>
+            </div>
+
+
+            <button type="button" onclick="window.location.href='{{ url_for('stap2') }}'">Vorige</button>
+            <button type="submit">Voltooien</button>
+        </form>
     </div>
-
-    <div class="slider-wrapper">
-        <label class="slider-label-left">Praktisch</label>
-        <input type="range" min="1" max="5" value="{{ session.get('creatief', 3) }}" name="creatief"
-            oninput="this.nextElementSibling.innerText = this.value">
-        <label class="slider-label-right">Creatief</label>
-    </div>
-
-    <div class="slider-wrapper">
-        <label class="slider-label-left">Analytisch</label>
-        <input type="range" min="1" max="5" value="{{ session.get('intuitief', 3) }}" name="intuitief"
-            oninput="this.nextElementSibling.innerText = this.value">
-        <label class="slider-label-right">Intuïtief</label>
-    </div>
-
-    <div class="slider-wrapper">
-        <label class="slider-label-left">Rustig</label>
-        <input type="range" min="1" max="5" value="{{ session.get('stress', 3) }}" name="stress"
-            oninput="this.nextElementSibling.innerText = this.value">
-        <label class="slider-label-right">Stressgevoelig</label>
-    </div>
-
-    <br>
-    <button type="submit">Voltooien</button>
-</form>
+</div>
 {% endblock %}

@@ -1,34 +1,46 @@
 {% extends "base.html" %}
 
-
 {% block content %}
-<h2>Stap 1: Persoonlijke info</h2>
-<form method="POST">
-    <!-- Naam -->
-    <label>Naam:</label><br>
-    <input type="text" name="naam" required value="{{ session.get('naam', '') }}"><br><br>
+<div class="form-container">
+    <div class="form-binnenkant">
+        <h2>Stap 1: Persoonlijke info</h2>
+        <form method="POST">
+            <!-- Naam -->
+            <div class="groep">
+                <label for="naam">Naam:</label>
+                <input type="text" id="naam" name="naam" required value="{{ session.get('naam', '') }}">
+            </div>
 
-    <!-- Leeftijd -->
-    <label>Leeftijd:</label><br>
-    <input type="number" name="leeftijd" required value="{{ session.get('leeftijd', '') }}"><br><br>
+            <!-- Leeftijd -->
+            <div class="groep">
+                <label for="leeftijd">Leeftijd:</label>
+                <input type="number" id="leeftijd" name="leeftijd" required value="{{ session.get('leeftijd', '') }}">
+            </div>
 
-    <!-- Geslacht -->
-    <label>Geslacht:</label>
-    <div class="gender-buttons">
-        <input type="radio" id="man" name="geslacht" value="man" required {% if session.get('geslacht')=='man'
-            %}checked{% endif %}>
-        <label for="man">Man</label>
+            <!-- Geslacht -->
+            <div class="groep">
+                <label>Geslacht:</label>
+                <div class="gender-buttons geslacht">
+                    <label>
+                        <input type="radio" name="geslacht" value="man" required {% if session.get('geslacht')=='man'
+                            %}checked{% endif %}>
+                        Man
+                    </label>
+                    <label>
+                        <input type="radio" name="geslacht" value="vrouw" {% if session.get('geslacht')=='vrouw'
+                            %}checked{% endif %}>
+                        Vrouw
+                    </label>
+                    <label>
+                        <input type="radio" name="geslacht" value="non-binair" {% if
+                            session.get('geslacht')=='non-binair' %}checked{% endif %}>
+                        Non-binair
+                    </label>
+                </div>
+            </div>
 
-        <input type="radio" id="vrouw" name="geslacht" value="vrouw" {% if session.get('geslacht')=='vrouw' %}checked{%
-            endif %}>
-        <label for="vrouw">Vrouw</label>
-
-        <input type="radio" id="non-binair" name="geslacht" value="non-binair" {% if
-            session.get('geslacht')=='non-binair' %}checked{% endif %}>
-        <label for="non-binair">Non-binair</label>
+            <button type="submit">Volgende</button>
+        </form>
     </div>
-
-
-    <button type="submit">Volgende</button>
-</form>
+</div>
 {% endblock %}

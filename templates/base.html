@@ -15,9 +15,9 @@
             {% if 'user_id' in session %}
             <li><a href="{{ url_for('stap1') }}">Nieuwe Persona</a></li>
             <li><a href="{{ url_for('personas') }}">Mijn Persona's</a></li>
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <li><a href="{{ url_for('logout') }}">Uitloggen</a></li>
             {% else %}
-            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('login') }}">Inloggen</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
         </ul>
@@ -35,6 +35,7 @@
         <div class="step {% if step > 3 %}completed{% elif step == 3 %}active{% endif %}">3</div>
     </div>
     {% endif %}
+
 
 
 

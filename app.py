@@ -120,9 +120,20 @@ def stap3():
         return redirect('/login')
 
     if request.method == 'POST':
+        if request.form.get('action') == 'prev':
+            # optioneel: sla huidige session data op
+            session['doelen'] = request.form.get('doelen', '')
+            session['frustraties'] = request.form.get('frustraties', '')
+            session['extravert'] = int(request.form.get('extravert', 3))
+            session['creatief'] = int(request.form.get('creatief', 3))
+            session['intuitief'] = int(request.form.get('intuitief', 3))
+            session['stress'] = int(request.form.get('stress', 3))
+
+            return redirect('/stap2')
+
+        # normale 'Volgende'
         session['doelen'] = request.form.get('doelen', '')
         session['frustraties'] = request.form.get('frustraties', '')
-
         session['extravert'] = int(request.form.get('extravert', 3))
         session['creatief'] = int(request.form.get('creatief', 3))
         session['intuitief'] = int(request.form.get('intuitief', 3))
@@ -131,6 +142,7 @@ def stap3():
         return redirect('/generate')
 
     return render_template("stap3.html", step=3)
+
 
 
 # -----------------------------
@@ -184,7 +196,8 @@ def result():
     if not persona:
         return redirect('/stap1')
 
-    return render_template('result.html', persona=persona)
+    return render_template('result.html', persona=persona, step=4)
+
 
 
 # -----------------------------
