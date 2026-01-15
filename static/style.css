@@ -36,29 +36,85 @@ nav a {
     text-decoration: none;
 }
 
-.slider-wrapper input[type="range"] {
-    width: 500px;
-    height: 6px;
-    background: #ddd;
-    border-radius: 3px;
+.slider-wrapper {
+    display: grid;
+    grid-template-columns: 100px 400px 100px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+
 }
 
+.slider-label-left {
+    text-align: right;
+    font-size: 14px;
+}
+
+.slider-label-right {
+    text-align: left;
+    font-size: 14px;
+}
+
+/* Chrome, Safari, Edge */
+.slider-wrapper input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+    -webkit-appearance: none;
+    /* nodig voor custom styling */
+}
+
+/* Slider-thumb voor Chrome/Safari/Edge */
 .slider-wrapper input[type="range"]::-webkit-slider-thumb {
-    width: 14px;
-    height: 14px;
-    background: #333;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #1D5970;
     border-radius: 50%;
     cursor: pointer;
-    margin-top: -4px;
+    margin-top: -5px;
+}
+
+/* Firefox */
+.slider-wrapper input[type="range"]::-moz-range-track {
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
 }
 
 .slider-wrapper input[type="range"]::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
-    background: #333;
+    width: 16px;
+    height: 16px;
+    background: #1D5970;
     border-radius: 50%;
     cursor: pointer;
 }
+
+/* Optioneel: IE / Edge Legacy */
+.slider-wrapper input[type="range"]::-ms-track {
+    height: 6px;
+    border-radius: 3px;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+.slider-wrapper input[type="range"]::-ms-fill-lower,
+.slider-wrapper input[type="range"]::-ms-fill-upper {
+    background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+    border-radius: 3px;
+}
+
+.slider-wrapper input[type="range"]::-ms-thumb {
+    width: 16px;
+    height: 16px;
+    background: #1D5970;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
 
 .steps {
     position: fixed;
@@ -128,12 +184,15 @@ nav a {
 }
 
 /* Input velden */
-.groep input[type="text"],
-.groep input[type="number"] {
+.groep textarea[type="text"],
+.groep textarea[type="number"] {
     padding: 8px 12px;
     border-radius: 6px;
     border: 1px solid #2A7B9B;
     width: 100%;
+    font-size: 16px;
+    resize: none;
+    width: 500px;
 }
 
 .groep input:focus {
@@ -142,6 +201,13 @@ nav a {
     box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
+.kleine {
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Geslacht */
 .gender-buttons {
     display: flex;
     gap: 10px;
@@ -178,6 +244,23 @@ button:hover {
     background: #1D5970;
 }
 
+/* Submit button */
+.button {
+    margin-top: 10px;
+    padding: 10px 18px;
+    border: none;
+    background: #2A7B9B;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: #1D5970;
+}
+
 /* Responsiveness */
 @media (max-width: 500px) {
     .form-inner {
@@ -186,5 +269,16 @@ button:hover {
 
     .gender-buttons {
         flex-direction: column;
+    }
+
+    .groep textarea[type="text"],
+    .groep textarea[type="number"] {
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #2A7B9B;
+        width: 100%;
+        font-size: 16px;
+        resize: none;
+        width: 300px;
     }
 }

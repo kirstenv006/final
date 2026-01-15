@@ -152,18 +152,49 @@ def generate():
     if 'user_id' not in session:
         return redirect('/login')
 
+    # Alle session data doorgeven aan de template
+    persona_data = {
+        'naam': session.get('naam'),
+        'geslacht': session.get('geslacht'),
+        'leeftijd': session.get('leeftijd'),
+        'school': session.get('school'),
+        'werk': session.get('werk'),
+        'doelen': session.get('doelen'),
+        'frustraties': session.get('frustraties'),
+        'extravert': session.get('extravert'),
+        'creatief': session.get('creatief'),
+        'intuitief': session.get('intuitief'),
+        'stress': session.get('stress')
+    }
+
+    return render_template('result.html', persona=persona_data)
+
+
+@app.route('/save_persona', methods=['POST'])
+def save_persona():
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    # Veilig omzetten van ints
+    def safe_int(value, default=3):
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return default
+
+    leeftijd = session.get('leeftijd')
     persona = Persona(
-        naam=session.get('naam'),
-        geslacht=session.get('geslacht'),
-        leeftijd=int(session.get('leeftijd')) if session.get('leeftijd') else None,
-        school=session.get('school'),
-        werk=session.get('werk'),
-        doelen=session.get('doelen'),
-        frustraties=session.get('frustraties'),
-        extravert=session.get('extravert'),
-        creatief=session.get('creatief'),
-        intuitief=session.get('intuitief'),
-        stress=session.get('stress'),
+        naam=session.get('naam', ''),
+        geslacht=session.get('geslacht', ''),
+        leeftijd=safe_int(leeftijd, None),
+        school=session.get('school', ''),
+        werk=session.get('werk', ''),
+        doelen=session.get('doelen', ''),
+        frustraties=session.get('frustraties', ''),
+        extravert=safe_int(session.get('extravert', 3)),
+        creatief=safe_int(session.get('creatief', 3)),
+        intuitief=safe_int(session.get('intuitief', 3)),
+        stress=safe_int(session.get('stress', 3)),
         user_id=session['user_id']
     )
 
@@ -171,15 +202,10 @@ def generate():
     db.session.commit()
 
     # Session opschonen
-    for key in [
-        'naam', 'geslacht', 'leeftijd',
-        'school', 'werk',
-        'doelen', 'frustraties',
-        'extravert', 'creatief', 'intuitief', 'stress'
-    ]:
+    for key in ['naam','geslacht','leeftijd','school','werk','doelen','frustraties','extravert','creatief','intuitief','stress']:
         session.pop(key, None)
 
-    return redirect('/result')
+    return redirect('/personas')  # lijst van opgeslagen persona's
 
 
 # -----------------------------
@@ -189,15 +215,62 @@ def result():
     if 'user_id' not in session:
         return redirect('/login')
 
+    # Gebruik de session-data voor weergave
+    persona_data = {
+        'naam': session.get('naam', ''),
+        'geslacht': session.get('geslacht', ''),
+        'leeftijd': session.get('leeftijd', ''),
+        'school': session.get('school', ''),
+        'werk': session.get('werk', ''),
+        'doelen': session.get('doelen', ''),
+        'frustraties': session.get('frustraties', ''),
+        'extravert': session.get('extravert', 3),
+        'creatief': session.get('creatief', 3),
+        'intuitief': session.get('intuitief', 3),
+        'stress': session.get('stress', 3)
+    }
+
+    return render_template('result.html', persona=persona_data)
+
+
+# -----------------------------
+# EDIT PERSONA
+@app.route('/edit/<int:persona_id>')
+def edit_persona(persona_id):
+    if 'user_id' not in session:
+        return redirect('/login')
+
     persona = Persona.query.filter_by(
+        id=persona_id,
         user_id=session['user_id']
-    ).order_by(Persona.id.desc()).first()
+    ).first_or_404()
 
-    if not persona:
-        return redirect('/stap1')
+    session['naam'] = persona.naam
+    session['geslacht'] = persona.geslacht
+    session['leeftijd'] = persona.leeftijd
+    session['school'] = persona.school
+    session['werk'] = persona.werk
+    session['doelen'] = persona.doelen
+    session['frustraties'] = persona.frustraties
+    session['extravert'] = persona.extravert
+    session['creatief'] = persona.creatief
+    session['intuitief'] = persona.intuitief
+    session['stress'] = persona.stress
 
-    return render_template('result.html', persona=persona, step=4)
+    session['editing_persona_id'] = persona.id
 
+    return redirect('/stap1')
+
+@app.route('/nieuw_persona')
+def nieuw_persona():
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    # Session opschonen
+    for key in ['naam','geslacht','leeftijd','school','werk','doelen','frustraties','extravert','creatief','intuitief','stress']:
+        session.pop(key, None)
+
+    return redirect('/stap1')
 
 
 # -----------------------------

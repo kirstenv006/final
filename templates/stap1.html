@@ -8,13 +8,14 @@
             <!-- Naam -->
             <div class="groep">
                 <label for="naam">Naam:</label>
-                <input type="text" id="naam" name="naam" required value="{{ session.get('naam', '') }}">
+                <textarea type="text" id="naam" name="naam" required>{{ session.get('naam', '') }}</textarea>
             </div>
 
             <!-- Leeftijd -->
             <div class="groep">
                 <label for="leeftijd">Leeftijd:</label>
-                <input type="number" id="leeftijd" name="leeftijd" required value="{{ session.get('leeftijd', '') }}">
+                <textarea type="number" id="leeftijd" name="leeftijd"
+                    required>{{ session.get('leeftijd', '') }}</textarea>
             </div>
 
             <!-- Geslacht -->

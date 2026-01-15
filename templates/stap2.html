@@ -8,13 +8,13 @@
             <!-- School/studie -->
             <div class="groep">
                 <label for="school">School/studie:</label>
-                <input type="text" id="school" name="school" required value="{{ session.get('school', '') }}">
+                <textarea type="text" id="school" name="school" required>{{ session.get('school', '') }}</textarea>
             </div>
 
             <!-- Werk -->
             <div class="groep">
                 <label for="werk">Werk:</label>
-                <input type="text" id="werk" name="werk" required value="{{ session.get('werk', '') }}">
+                <textarea type="text" id="werk" name="werk" required>{{ session.get('werk', '') }}</textarea>
             </div>
 
 
