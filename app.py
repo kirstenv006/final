@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, make_response
 import os
+# from weasyprint import HTML, CSS
 
 from extensions import db
 from models import User, Persona
@@ -283,6 +284,46 @@ def personas():
     personas = Persona.query.filter_by(user_id=session['user_id']).all()
     return render_template('personas.html', personas=personas)
 
+# -----------------------------
+# Export pdf
+
+# @app.route("/export/pdf")
+# def export_pdf():
+#     if 'user_id' not in session:
+#         return redirect('/login')
+
+#     # Kies de stijl (kan via querystring, default fallback)
+#     stijl = request.args.get("stijl", "default")
+
+#     # Build persona data from session
+#     persona_data = {
+#         'naam': session.get('naam', ''),
+#         'geslacht': session.get('geslacht', ''),
+#         'leeftijd': session.get('leeftijd', ''),
+#         'school': session.get('school', ''),
+#         'werk': session.get('werk', ''),
+#         'doelen': session.get('doelen', ''),
+#         'frustraties': session.get('frustraties', ''),
+#         'extravert': session.get('extravert', 3),
+#         'creatief': session.get('creatief', 3),
+#         'intuitief': session.get('intuitief', 3),
+#         'stress': session.get('stress', 3)
+#     }
+
+#     html = render_template(
+#         "result_pdf.html",
+#         persona=persona_data,
+#         stijl=stijl
+#     )
+
+#     pdf = HTML(string=html, base_url=request.root_url).write_pdf(
+#         stylesheets=[CSS("static/result.css")]
+#     )
+
+#     response = make_response(pdf)
+#     response.headers["Content-Type"] = "application/pdf"
+#     response.headers["Content-Disposition"] = f"inline; filename={persona_data.get('naam') or 'persona'}.pdf"
+#     return response
 
 # -----------------------------
 # RUN SERVER

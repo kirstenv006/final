@@ -1,14 +1,4 @@
 /* Voor alles onder body.default */
-body.default .stijl-selector {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-body.default .stijl-selector select {
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
 body.default button,
 body.default .button {
     margin-top: 10px;
@@ -35,7 +25,6 @@ body.default .result-kaart {
     padding: 20px;
     border: 2px solid #2A7B9B;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: inline-block;
 }
 
@@ -43,35 +32,16 @@ body.default .persona-grid>div {
     background-color: rgba(240, 240, 240, 0.8);
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.default .afbeelding {
-    text-align: center;
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 
-/* Stijl 1: rustig/blauw thema */
-body.stijl1 .stijl-selector {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-body.stijl1 .stijl-selector select {
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
+/* Stijl 1: */
 body.stijl1 button,
 body.stijl1 .button {
     margin-top: 10px;
     padding: 10px 18px;
     border: none;
-    background: #2A7B9B;
+    background: #833AB4;
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -79,7 +49,7 @@ body.stijl1 .button {
 
 body.stijl1 button:hover,
 body.stijl1 .button:hover {
-    background: #1D5970;
+    background: #5f2a82;
 }
 
 body.stijl1 .result-container {
@@ -90,151 +60,26 @@ body.stijl1 .result-container {
 
 body.stijl1 .result-kaart {
     padding: 20px;
-    border: 2px solid #2A7B9B;
+    border: 2px solid #833AB4;
+    background-color: rgba(252, 176, 69, 0.19);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: inline-block;
 }
 
 body.stijl1 .persona-grid>div {
-    background-color: rgba(240, 240, 240, 0.8);
+    background-color: rgba(131, 58, 180, 0.28);
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-body.stijl1 .afbeelding {
-    text-align: center;
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.stijl1 .button {
-    margin-top: 10px;
-    padding: 10px 18px;
-    border: none;
-    background: #2A7B9B;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-body.stijl1 button:hover,
-body.stijl1 .button:hover {
-    background: #1D5970;
-}
-
-body.stijl1 .result-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-body.stijl1 .result-kaart {
-    padding: 20px;
-    border: 2px solid #2A7B9B;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}
-
-body.stijl1 .persona-grid>div {
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.stijl1 .afbeelding {
-    text-align: center;
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* body.stijl1 {
-    background-color: #f0f8ff;
-    color: #004080;
-    font-family: 'Verdana', sans-serif;
-}
-
-.stijl-selector.stijl1 {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.stijl-selector.stijl1 select {
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.stijl-selector.stijl1 label {
-    margin-right: 10px;
-}
-
-button.stijl1,
-.button.stijl1 {
-    margin-top: 10px;
-    padding: 10px 18px;
-    border: none;
-    background: #2A7B9B;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-button.stijl1:hover,
-.button.stijl1:hover {
-    background: #1D5970;
-}
-
-.result-container.stijl1 {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.result-kaart.stijl1 {
-    padding: 20px;
-    border: 2px solid #2A7B9B;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}
-
-.persona-grid.stijl1>div {
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-} */
 
 /* Stijl 2: donker thema */
-body.stijl2 {
-    background-color: #222;
-    color: #f1f1f1;
-    font-family: 'Courier New', monospace;
-}
-
-body.stijl2 .stijl-selector {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-body.stijl2 .stijl-selector select {
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
 body.stijl2 button,
 body.stijl2 .button {
     margin-top: 10px;
     padding: 10px 18px;
     border: none;
-    background: #2A7B9B;
+    background: #121212;
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -242,7 +87,7 @@ body.stijl2 .button {
 
 body.stijl2 button:hover,
 body.stijl2 .button:hover {
-    background: #1D5970;
+    background: #2b2a2a;
 }
 
 body.stijl2 .result-container {
@@ -253,94 +98,26 @@ body.stijl2 .result-container {
 
 body.stijl2 .result-kaart {
     padding: 20px;
-    border: 2px solid #2A7B9B;
+    border: 2px solid #2b2a2a;
+    background-color: #121212;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: inline-block;
 }
 
 body.stijl2 .persona-grid>div {
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.stijl2 .afbeelding {
-    text-align: center;
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.stijl2 .button {
-    margin-top: 10px;
-    padding: 10px 18px;
-    border: none;
-    background: #2A7B9B;
+    background-color: rgba(47, 47, 47, 0.28);
     color: white;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-body.stijl2 button:hover,
-body.stijl2 .button:hover {
-    background: #1D5970;
-}
-
-body.stijl2 .result-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-body.stijl2 .result-kaart {
-    padding: 20px;
-    border: 2px solid #2A7B9B;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}
-
-body.stijl2 .persona-grid>div {
-    background-color: rgba(240, 240, 240, 0.8);
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.stijl2 .afbeelding {
-    text-align: center;
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Stijl 3: speels thema */
-body.stijl3 {
-    background-color: #fff8dc;
-    color: #b22222;
-    font-family: 'Comic Sans MS', cursive;
-}
-
-body.stijl3 .stijl-selector {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-body.stijl3 .stijl-selector select {
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
 body.stijl3 button,
 body.stijl3 .button {
     margin-top: 10px;
     padding: 10px 18px;
     border: none;
-    background: #2A7B9B;
+    background: #b22222;
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -348,7 +125,7 @@ body.stijl3 .button {
 
 body.stijl3 button:hover,
 body.stijl3 .button:hover {
-    background: #1D5970;
+    background: #d28383;
 }
 
 body.stijl3 .result-container {
@@ -359,124 +136,17 @@ body.stijl3 .result-container {
 
 body.stijl3 .result-kaart {
     padding: 20px;
-    border: 2px solid #2A7B9B;
+    border: 2px solid #b22222;
+    background: #fff8dc;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: inline-block;
 }
 
 body.stijl3 .persona-grid>div {
-    background-color: rgba(240, 240, 240, 0.8);
+    background-color: #dab1b1;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
-body.stijl3 .afbeelding {
-    text-align: center;
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.stijl3 .button {
-    margin-top: 10px;
-    padding: 10px 18px;
-    border: none;
-    background: #2A7B9B;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-body.stijl3 button:hover,
-body.stijl3 .button:hover {
-    background: #1D5970;
-}
-
-body.stijl3 .result-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-body.stijl3 .result-kaart {
-    padding: 20px;
-    border: 2px solid #2A7B9B;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}
-
-body.stijl3 .persona-grid>div {
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.stijl3 .afbeelding {
-    text-align: center;
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* 
-.stijl-selector {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.stijl-selector select {
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.stijl-selector label {
-    margin-right: 10px;
-}
-
-button,
-.button {
-    margin-top: 10px;
-    padding: 10px 18px;
-    border: none;
-    background: #2A7B9B;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-button:hover,
-.button:hover {
-    background: #1D5970;
-}
-
-.result-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.result-kaart {
-    padding: 20px;
-    border: 2px solid #2A7B9B;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}
-
-.persona-grid>div {
-    background-color: rgba(240, 240, 240, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-} */
-
-
 
 /* Grid */
 .persona-grid {
@@ -496,4 +166,22 @@ button:hover,
 img {
     height: 150px;
     width: 150px;
+}
+
+/* Stijl selector */
+.stijl-selector {
+    margin-bottom: 20px;
+    font-weight: bold;
+
+}
+
+.stijl-selector select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 2px solid #2A7B9B;
+    width: 100%;
+    font-size: 16px;
+    resize: none;
 }

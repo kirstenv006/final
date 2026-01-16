@@ -10,20 +10,23 @@
     <label for="stijl">Kies een stijl:</label>
     <select id="stijl">
         <option value="default">Standaard</option>
-        <option value="stijl1">Stijl 1</option>
-        <option value="stijl2">Stijl 2</option>
-        <option value="stijl3">Stijl 3</option>
+        <option value="stijl1">Zomer</option>
+        <option value="stijl2">Donker</option>
+        <option value="stijl3">Lente</option>
     </select>
 </div>
 <div class="result-container">
     <div class="result-kaart">
         <!-- Persoonlijke info -->
         <div class="persona-grid">
-            <img src="{{ url_for('static', filename=(
-    'man.png' if (persona.geslacht or '').lower() == 'man' else
-    'vrouw.png' if (persona.geslacht or '').lower() == 'vrouw' else
-    'user.png'
-)) }}" alt="Persona Afbeelding" class="afbeelding">
+            <div class="afbeelding">
+                <img src="{{ url_for('static', filename=(
+                    'man.png' if (persona.geslacht or '').lower() == 'man' else
+                    'vrouw.png' if (persona.geslacht or '').lower() == 'vrouw' else
+                    'user.png'
+                )) }}" alt="Persona Afbeelding">
+            </div>
+
 
             <div class="identiteit">
                 <p><strong>Naam:</strong> {{ persona.naam or '' }}</p>
@@ -50,12 +53,14 @@
 </div>
 
 <!-- Knoppen -->
+
+<a href="{{ url_for('stap1') }}" class="button">Bewerken</a>
+<a href="{{ url_for('nieuw_persona') }}" class="button">Nieuwe persona</a>
+
 <form method="POST" action="{{ url_for('save_persona') }}" style="display:inline">
     <button type="submit" class="button">Opslaan</button>
 </form>
 
-<a href="{{ url_for('stap1') }}" class="button">Bewerken</a>
-<a href="{{ url_for('nieuw_persona') }}" class="button">Nieuwe persona</a>
 {% endblock %}
 
 {% block extra_js %}
