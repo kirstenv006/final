@@ -184,8 +184,9 @@ nav a {
 }
 
 /* Input velden */
-.groep textarea[type="text"],
-.groep textarea[type="number"] {
+.groep textarea,
+.groep input[type="text"],
+.groep input[type="number"] {
     padding: 8px 12px;
     border-radius: 6px;
     border: 1px solid #2A7B9B;
@@ -195,12 +196,13 @@ nav a {
     width: 500px;
 }
 
+/* 
 
 .groep input:focus {
     outline: none;
     border-color: #2A7B9B;
     box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-}
+} */
 
 .kleine {
     font-size: 12px;

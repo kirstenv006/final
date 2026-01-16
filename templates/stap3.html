@@ -10,21 +10,19 @@
             <div class="groep">
                 <label for="doelen">Doelen:</label><br>
                 <p class="kleine">Meerdere antwoorden mogelijk</p>
-                <textarea type="text" id="doelen" name="doelen" required>{{ session.get('doelen', '') }}</textarea>
+                <textarea id="doelen" name="doelen" required>{{ session.get('doelen', '') }}</textarea>
             </div>
 
             <!-- Frustraties -->
             <div class="groep">
                 <label for="frustraties">Frustraties:</label><br>
                 <p class="kleine">Meerdere antwoorden mogelijk</p>
-                <textarea type="text" id="frustraties" name="frustraties"
-                    required>{{ session.get('frustraties', '') }}</textarea>
+                <textarea id="frustraties" name="frustraties" required>{{ session.get('frustraties', '') }}</textarea>
             </div>
 
             <!-- Persoonlijke eigenschappen -->
             <div class="groep">
                 <label>Persoonlijke eigenschappen:</label>
-
 
                 <div class="slider-wrapper">
                     <label class="slider-label-left">Introvert</label>
@@ -50,7 +48,6 @@
                     <label class="slider-label-right">Stressgevoelig</label>
                 </div>
             </div>
-
 
             <button type="button" onclick="window.location.href='{{ url_for('stap2') }}'">Vorige</button>
             <button type="submit">Voltooien</button>

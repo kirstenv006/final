@@ -9,16 +9,15 @@
             <div class="groep">
                 <label for="school">School/studie:</label>
                 <p class="kleine">Invullen indien van toepassing</p>
-                <textarea type="text" id="school" name="school" required>{{ session.get('school', '') }}</textarea>
+                <textarea id="school" name="school">{{ session.get('school', '') }}</textarea>
             </div>
 
             <!-- Werk -->
             <div class="groep">
                 <label for="werk">Werk:</label>
                 <p class="kleine">Invullen indien van toepassing</p>
-                <textarea type="text" id="werk" name="werk" required>{{ session.get('werk', '') }}</textarea>
+                <textarea id="werk" name="werk">{{ session.get('werk', '') }}</textarea>
             </div>
-
 
             <button type="button" onclick="window.location.href='{{ url_for('stap1') }}'">Vorige</button>
             <button type="submit">Volgende</button>
