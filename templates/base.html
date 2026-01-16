@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}Persona generator{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block extra_css %}{% endblock %}
 </head>
 
 <body>
@@ -36,6 +37,7 @@
     </div>
     {% endif %}
 
+    {% block extra_js %}{% endblock %}
 
 
 
