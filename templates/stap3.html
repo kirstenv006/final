@@ -2,22 +2,22 @@
 
 {% block content %}
 <div class="form-container">
-    <div class="form-inner">
+    <div class="form-binnenkant">
         <h2>Stap 3: Doelen & Persoonlijke eigenschappen</h2>
 
         <form method="POST">
             <!-- Doelen -->
             <div class="groep">
-                <label for="doelen">Doelen:</label>
-                <p class="kleine">Meerdere antwoorden mogelijk, scheid met een komma of nieuwe regel</p>
-                <textarea id="doelen" name="doelen" rows="3" required>{{ session.get('doelen', '') }}</textarea>
+                <label for="doelen">Doelen:</label><br>
+                <p class="kleine">Meerdere antwoorden mogelijk</p>
+                <textarea type="text" id="doelen" name="doelen" required>{{ session.get('doelen', '') }}</textarea>
             </div>
 
             <!-- Frustraties -->
             <div class="groep">
-                <label for="frustraties">Frustraties:</label>
-                <p class="kleine">Meerdere antwoorden mogelijk, scheid met een komma of nieuwe regel</p>
-                <textarea id="frustraties" name="frustraties" rows="3"
+                <label for="frustraties">Frustraties:</label><br>
+                <p class="kleine">Meerdere antwoorden mogelijk</p>
+                <textarea type="text" id="frustraties" name="frustraties"
                     required>{{ session.get('frustraties', '') }}</textarea>
             </div>
 
@@ -25,35 +25,35 @@
             <div class="groep">
                 <label>Persoonlijke eigenschappen:</label>
 
+
                 <div class="slider-wrapper">
-                    <span class="slider-label-left">Introvert</span>
+                    <label class="slider-label-left">Introvert</label>
                     <input type="range" min="1" max="5" value="{{ session.get('extravert', 3) }}" name="extravert">
-                    <span class="slider-label-right">Extravert</span>
+                    <label class="slider-label-right">Extravert</label>
                 </div>
 
                 <div class="slider-wrapper">
-                    <span class="slider-label-left">Praktisch</span>
+                    <label class="slider-label-left">Praktisch</label>
                     <input type="range" min="1" max="5" value="{{ session.get('creatief', 3) }}" name="creatief">
-                    <span class="slider-label-right">Creatief</span>
+                    <label class="slider-label-right">Creatief</label>
                 </div>
 
                 <div class="slider-wrapper">
-                    <span class="slider-label-left">Analytisch</span>
+                    <label class="slider-label-left">Analytisch</label>
                     <input type="range" min="1" max="5" value="{{ session.get('intuitief', 3) }}" name="intuitief">
-                    <span class="slider-label-right">Intuïtief</span>
+                    <label class="slider-label-right">Intuïtief</label>
                 </div>
 
                 <div class="slider-wrapper">
-                    <span class="slider-label-left">Rustig</span>
+                    <label class="slider-label-left">Rustig</label>
                     <input type="range" min="1" max="5" value="{{ session.get('stress', 3) }}" name="stress">
-                    <span class="slider-label-right">Stressgevoelig</span>
+                    <label class="slider-label-right">Stressgevoelig</label>
                 </div>
             </div>
 
-            <div class="knoppen">
-                <button type="button" onclick="window.location.href='{{ url_for('stap2') }}'">Vorige</button>
-                <button type="submit">Voltooien</button>
-            </div>
+
+            <button type="button" onclick="window.location.href='{{ url_for('stap2') }}'">Vorige</button>
+            <button type="submit">Voltooien</button>
         </form>
     </div>
 </div>

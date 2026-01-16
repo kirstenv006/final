@@ -195,6 +195,7 @@ nav a {
     width: 500px;
 }
 
+
 .groep input:focus {
     outline: none;
     border-color: #2A7B9B;
@@ -203,7 +204,7 @@ nav a {
 
 .kleine {
     font-size: 12px;
-    margin-top: -10px;
+    margin-top: 5px;
     margin-bottom: 10px;
 }
 
