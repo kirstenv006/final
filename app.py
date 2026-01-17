@@ -310,7 +310,16 @@ def view_persona(persona_id):
         persona=persona,
         from_db=True
     )
+# Verwijder persona
+@app.route('/delete/<int:persona_id>')
+def delete_persona(persona_id):
+    if 'user_id' not in session:
+        return redirect('/login')
 
+    persona = Persona.query.filter_by(id=persona_id, user_id=session['user_id']).first_or_404()
+    db.session.delete(persona)
+    db.session.commit()
+    return redirect('/personas')
 
 # -----------------------------
 # Export pdf
