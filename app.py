@@ -165,8 +165,10 @@ def generate():
         'extravert': session.get('extravert'),
         'creatief': session.get('creatief'),
         'intuitief': session.get('intuitief'),
-        'stress': session.get('stress')
+        'stress': session.get('stress'),
+        'stijl': session.get('stijl', 'default') 
     }
+
 
     return render_template('result.html', persona=persona_data)
 
@@ -196,14 +198,16 @@ def save_persona():
         creatief=safe_int(session.get('creatief', 3)),
         intuitief=safe_int(session.get('intuitief', 3)),
         stress=safe_int(session.get('stress', 3)),
+        stijl=session.get('stijl', 'default'), 
         user_id=session['user_id']
     )
+
 
     db.session.add(persona)
     db.session.commit()
 
     # Session opschonen
-    for key in ['naam','geslacht','leeftijd','school','werk','doelen','frustraties','extravert','creatief','intuitief','stress']:
+    for key in ['naam','geslacht','leeftijd','school','werk','doelen','frustraties','extravert','creatief','intuitief','stress','stijl']:
         session.pop(key, None)
 
     return redirect('/personas')  # lijst van opgeslagen persona's
@@ -228,7 +232,8 @@ def result():
         'extravert': session.get('extravert', 3),
         'creatief': session.get('creatief', 3),
         'intuitief': session.get('intuitief', 3),
-        'stress': session.get('stress', 3)
+        'stress': session.get('stress', 3),
+        'stijl': session.get('stijl', 'default')
     }
 
     return render_template('result.html', persona=persona_data)
@@ -283,6 +288,29 @@ def personas():
 
     personas = Persona.query.filter_by(user_id=session['user_id']).all()
     return render_template('personas.html', personas=personas)
+
+@app.route("/update_stijl", methods=["POST"])
+def update_stijl():
+    data = request.get_json()
+    session["stijl"] = data.get("stijl", "default")
+    return "", 204
+
+@app.route('/persona/<int:persona_id>')
+def view_persona(persona_id):
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    persona = Persona.query.filter_by(
+        id=persona_id,
+        user_id=session['user_id']
+    ).first_or_404()
+
+    return render_template(
+        'result.html',
+        persona=persona,
+        from_db=True
+    )
+
 
 # -----------------------------
 # Export pdf

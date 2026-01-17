@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 
+{% block body_class %}
+{{ persona.stijl or 'default' }}
+{% endblock %}
+
+
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
 {% endblock %}
+
+{% set huidige_stijl = persona.stijl or 'default' %}
 
 {% block content %}
 <h2>Hier is {{ persona.naam or 'je persona' }}!</h2>
@@ -60,6 +67,10 @@
 <form method="POST" action="{{ url_for('save_persona') }}" style="display:inline">
     <button type="submit" class="button">Opslaan</button>
 </form>
+<a href="{{ url_for('personas') }}" class="button">
+    Terug naar overzicht
+</a>
+
 
 {% endblock %}
 
@@ -67,18 +78,24 @@
 <script>
     const selector = document.getElementById('stijl');
 
-    // Laad opgeslagen stijl
     window.addEventListener('load', () => {
-        const savedStyle = localStorage.getItem('stijl') || 'default';
+        const savedStyle = "{{ huidige_stijl }}";
         document.body.className = savedStyle;
         selector.value = savedStyle;
     });
 
-    // Pas stijl aan bij verandering
+
     selector.addEventListener('change', () => {
         const stijl = selector.value;
         document.body.className = stijl;
-        localStorage.setItem('stijl', stijl);
+
+        fetch("/update_stijl", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ stijl })
+        });
     });
+
+
 </script>
 {% endblock %}

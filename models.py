@@ -23,6 +23,7 @@ class Persona(db.Model):
     stress = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    stijl = db.Column(db.String(20), default="default")
 
     def __repr__(self):
         return f"<Persona {self.naam}>"

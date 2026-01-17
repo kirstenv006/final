@@ -1,51 +1,51 @@
 {% extends "base.html" %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+{% endblock %}
+
 {% block content %}
-<h2>Alle opgeslagen persona's</h2>
+<h2>Mijn persona’s</h2>
 
 {% if personas %}
-<table border="1" cellpadding="5" cellspacing="0">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Naam</th>
-            <th>Geslacht</th>
-            <th>Leeftijd</th>
-            <th>Doelen</th>
-            <th>Frustraties</th>
-            <th>School/studie</th>
-            <th>Werk</th>
-            <th>Extravert</th>
-            <th>Creatief</th>
-            <th>Intuïtief</th>
-            <th>Stress</th>
+<div class="persona-overzicht">
+    {% for p in personas %}
+    <div class="persona-kaart {{ p.stijl or 'default' }}">
+        <div class="persona-kaart-inner">
 
-        </tr>
-    </thead>
-    <tbody>
-        {% for p in personas %}
-        <tr>
-            <td>{{ p.id }}</td>
-            <td>{{ p.naam }}</td>
-            <td>{{ p.geslacht }}</td>
-            <td>{{ p.leeftijd }}</td>
-            <td>{{ p.doelen }}</td>
-            <td>{{ p.frustraties }}</td>
-            <td>{{ p.school }}</td>
-            <td>{{ p.werk }}</td>
-            <td>{{ p.extravert }}/5</td>
-            <td>{{ p.creatief }}/5</td>
-            <td>{{ p.intuitief }}/5</td>
-            <td>{{ p.stress }}/5</td>
+            <div class="afbeelding">
+                <img src="{{ url_for('static', filename=(
+                    'man.png' if (p.geslacht or '').lower() == 'man' else
+                    'vrouw.png' if (p.geslacht or '').lower() == 'vrouw' else
+                    'user.png'
+                )) }}" alt="Persona">
+            </div>
 
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+            <h3>{{ p.naam }}</h3>
+
+            <p><strong>Leeftijd:</strong> {{ p.leeftijd }}</p>
+            <p><strong>School:</strong> {{ p.school }}</p>
+            <p><strong>Werk:</strong> {{ p.werk }}</p>
+
+
+            <div class="actie-knoppen">
+                <a href="{{ url_for('view_persona', persona_id=p.id) }}" class="button">
+                    Bekijk
+                </a>
+
+                <a href="{{ url_for('edit_persona', persona_id=p.id) }}" class="button">
+                    Bewerken
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% else %}
-<p>Er zijn nog geen persona's opgeslagen.</p>
+<p>Er zijn nog geen persona’s opgeslagen.</p>
 {% endif %}
 
-<br>
-<a href="{{ url_for('stap1') }}"><button>Nieuwe persona maken</button></a>
+<a href="{{ url_for('stap1') }}" class="nwe_knop">Nieuwe persona maken</a>
 {% endblock %}
