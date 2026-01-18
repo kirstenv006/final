@@ -85,3 +85,9 @@ button:hover {
     text-align: center;
     margin-bottom: 20px;
 }
+
+.intro {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}

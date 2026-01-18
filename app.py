@@ -30,8 +30,25 @@ with app.app_context():
 @app.route('/')
 def index():
     if 'user_id' in session:
-        return redirect('/stap1')
+        return redirect('/dashboard')
     return redirect('/login')
+
+@app.route('/dashboard')
+def dashboard():
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    user = User.query.get(session['user_id'])
+
+    laatste_persona = Persona.query.filter_by(
+        user_id=session['user_id']
+    ).order_by(Persona.id.desc()).first()
+
+    return render_template(
+        'dashboard.html',
+        user=user,
+        laatste_persona=laatste_persona
+    )
 
 
 # -----------------------------
@@ -43,10 +60,10 @@ def login():
             username=request.form['username'],
             password=request.form['password']
         ).first()
-
+    
         if user:
             session['user_id'] = user.id
-            return redirect('/stap1')
+            return redirect('/dashboard')
 
         return "Login mislukt"
 
@@ -69,7 +86,7 @@ def register():
         db.session.commit()
 
         session['user_id'] = user.id
-        return redirect('/stap1')
+        return redirect('/dashboard')
 
     return render_template('register.html')
 

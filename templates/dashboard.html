@@ -1,22 +1,46 @@
-<h1>Mijn Persona’s</h1>
+{% extends "base.html" %}
 
-<form method="POST" action="/create-persona">
-    <input name="naam" placeholder="Naam">
-    <input name="leeftijd" placeholder="Leeftijd">
-    <textarea name="doelen" placeholder="Doelen"></textarea>
-    <textarea name="frustraties" placeholder="Frustraties"></textarea>
-    <button>Persona maken</button>
-</form>
+{% block content %}
+<h1>De Persona Generator</h1>
 
-<hr>
+<h3>Welkom terug {{ user.username }}!</h3>
 
-{% for persona in personas %}
-<div>
-    <h3>{{ persona.naam }}</h3>
-    <p>{{ persona.leeftijd }}</p>
-    <p>{{ persona.doelen }}</p>
-    <p>{{ persona.frustraties }}</p>
+<div class="dashboard">
+    {% if laatste_persona %}
+
+
+    <div class="persona-overzicht">
+
+        <div class="persona-kaart {{ laatste_persona.stijl or 'default' }}">
+            <div class="persona-kaart-inner">
+                <h3>Laatst gemaakte persona:</h3>
+                <h4>{{ laatste_persona.naam }}</h4>
+
+                <p><strong>Leeftijd:</strong> {{ laatste_persona.leeftijd }}</p>
+                <p><strong>School:</strong> {{ laatste_persona.school }}</p>
+                <p><strong>Werk:</strong> {{ laatste_persona.werk }}</p>
+
+                <div class="actie-knoppen">
+                    <a href="{{ url_for('view_persona', persona_id=laatste_persona.id) }}" class="button">
+                        Bekijk
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="geen_persona">
+        <p><em>Maak je eerste persona</em></p>
+        <a href="{{ url_for('stap1') }}" class="button">Persona maken</a>
+    </div>
+    {% endif %}
+
+    <div class="dashboard-knoppen">
+        <h3>Selecteer een actie:</h3>
+        <a href="{{ url_for('stap1') }}" class="button">Nieuwe persona maken</a><br>
+        <a href="{{ url_for('personas') }}" class="button">Mijn persona’s</a><br>
+        <a href="{{ url_for('logout') }}" class="button">Uitloggen</a>
+    </div>
 </div>
-{% endfor %}
-
-<a href="/logout">Logout</a>
+{% endblock %}

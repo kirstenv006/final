@@ -264,6 +264,74 @@ button:hover {
     background: #1D5970;
 }
 
+.dashboard-knoppen {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.dashboard {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 50px;
+    align-items: center;
+}
+
+.persona-overzicht {
+    display: flex;
+    gap: 20px;
+}
+
+.persona-kaart {
+    border-radius: 14px;
+    padding: 12px;
+}
+
+/* Binnenkant */
+.persona-kaart-inner {
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* DEFAULT */
+.persona-kaart.default {
+    border: 2px solid #2A7B9B;
+}
+
+.persona-kaart.default .persona-kaart-inner {
+    background: rgba(240, 240, 240, 0.9);
+}
+
+/* STIJL 1 */
+.persona-kaart.stijl1 {
+    border: 2px solid #833AB4;
+}
+
+.persona-kaart.stijl1 .persona-kaart-inner {
+    background: rgba(252, 176, 69, 0.25);
+}
+
+/* STIJL 2 */
+.persona-kaart.stijl2 {
+    border: 2px solid #2b2a2a;
+}
+
+.persona-kaart.stijl2 .persona-kaart-inner {
+    background: #121212;
+    color: white;
+}
+
+/* STIJL 3 */
+.persona-kaart.stijl3 {
+    border: 2px solid #b22222;
+}
+
+.persona-kaart.stijl3 .persona-kaart-inner {
+    background: #fff8dc;
+}
+
 /* Responsiveness */
 @media (max-width: 500px) {
     .form-inner {

@@ -12,7 +12,7 @@
     <!-- NAVIGATIE -->
     <nav>
         <ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Home</a></li>
             {% if 'user_id' in session %}
             <li><a href="{{ url_for('stap1') }}">Nieuwe Persona</a></li>
             <li><a href="{{ url_for('personas') }}">Mijn Persona's</a></li>
