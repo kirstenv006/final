@@ -5,51 +5,55 @@
 {% endblock %}
 
 {% block content %}
-<h2>Mijn persona’s</h2>
+<div class="alles">
 
-{% if personas %}
-<div class="persona-overzicht">
-    {% for p in personas %}
-    <div class="persona-kaart {{ p.stijl or 'default' }}">
-        <div class="persona-kaart-inner">
+    <h2>Mijn persona’s</h2>
 
-            <div class="afbeelding">
-                <img src="{{ url_for('static', filename=(
-                    'man.png' if (p.geslacht or '').lower() == 'man' else
-                    'vrouw.png' if (p.geslacht or '').lower() == 'vrouw' else
-                    'user.png'
-                )) }}" alt="Persona">
+    {% if personas %}
+    <div class="persona-overzicht">
+
+        {% for p in personas %}
+        <div class="persona-kaart {{ p.stijl or 'default' }}">
+            <div class="persona-kaart-inner">
+
+                <img src="{{ url_for('static', filename=
+                        'man.png' if (p.geslacht or '').lower() == 'man' else
+                        'vrouw.png' if (p.geslacht or '').lower() == 'vrouw' else
+                        'user.png'
+                    ) }}" alt="Persona">
+
+                <h3>{{ p.naam }}</h3>
+
+                <p><strong>Leeftijd:</strong> {{ p.leeftijd }}</p>
+                <p><strong>School:</strong> {{ p.school }}</p>
+                <p><strong>Werk:</strong> {{ p.werk }}</p>
+
+                <div class="actie-knoppen">
+                    <a href="{{ url_for('view_persona', persona_id=p.id) }}" class="button">
+                        Bekijk
+                    </a>
+
+                    <a href="{{ url_for('edit_persona', persona_id=p.id) }}" class="button">
+                        Bewerken
+                    </a>
+
+                    <form action="{{ url_for('delete_persona', persona_id=p.id) }}" method="post">
+                        <button type="submit" class="button">Verwijder</button>
+                    </form>
+                </div>
+
             </div>
-
-            <h3>{{ p.naam }}</h3>
-
-            <p><strong>Leeftijd:</strong> {{ p.leeftijd }}</p>
-            <p><strong>School:</strong> {{ p.school }}</p>
-            <p><strong>Werk:</strong> {{ p.werk }}</p>
-
-
-            <div class="actie-knoppen">
-                <a href="{{ url_for('view_persona', persona_id=p.id) }}" class="button">
-                    Bekijk
-                </a>
-
-
-                <a href="{{ url_for('edit_persona', persona_id=p.id) }}" class="button">
-                    Bewerken
-                </a>
-                <a href="{{ url_for('delete_persona', persona_id=p.id) }}" class="button">
-                    Verwijder
-                </a>
-            </div>
-
-
         </div>
-    </div>
-    {% endfor %}
-</div>
-{% else %}
-<p>Er zijn nog geen persona’s opgeslagen.</p>
-{% endif %}
+        {% endfor %}
 
-<a href="{{ url_for('stap1') }}" class="nwe_knop">Nieuwe persona maken</a>
+    </div>
+    {% else %}
+    <p>Er zijn nog geen persona’s opgeslagen.</p>
+    {% endif %}
+
+    <a href="{{ url_for('stap1') }}" class="nwe_knop">
+        Nieuwe persona maken
+    </a>
+
+</div>
 {% endblock %}
