@@ -18,6 +18,7 @@ nav {
     width: 100%;
     background: #297999;
     background: linear-gradient(90deg, rgba(41, 121, 153, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+    z-index: 1000;
 }
 
 nav ul {

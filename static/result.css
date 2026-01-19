@@ -200,7 +200,6 @@ img {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-
 }
 
 /* Basis kaart */
@@ -293,7 +292,6 @@ img {
     top: 40px;
     left: 0;
     width: 100%;
-    z-index: -1;
     display: flex;
     justify-content: center;
     flex-direction: column;
