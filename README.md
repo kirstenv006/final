@@ -1,3 +1,11 @@
+# Auteur
+Datum: 20-01-2026 
+Naam: Kirsten Veenstra 
+Groep periode 2: Flask 
+Studentennummer: 5747732 
+Studie: Communicatie & multimedia design 
+Instituut: Hanze Hogeschool Groningen
+
 # De Persona Generator
 
 De Persona Generator is een webtool voor CMD-studenten waarmee zij hun doelgroep kunnen omzetten in een persona. Persona’s zijn fictieve personages die een doelgroep representeren en worden gebruikt om ontwerpen en concepten te testen binnen projecten. De website functioneert als een generator: de gebruiker voert doelgroep kenmerken in, zoals leeftijd, doelen, frustraties en karaktereigenschappen. Op basis van deze input genereert de website een persona. De ingevoerde data worden opgeslagen in een database, zodat persona’s later opnieuw gebruikt, aangepast of verder ontwikkeld kunnen worden. Dit maakt het understand- en ideate-proces sneller en efficiënter.
@@ -108,7 +116,7 @@ Vereisten
 
 # Clone deze repository:
 
-    1. git clone <repository-url>
+    1. git clone <https://github.com/kirstenv006/final>
         cd final
 
 
@@ -118,16 +126,16 @@ Vereisten
 
     3. Activeer de virtual environment:
         Windows
-            .venv\Scripts\activate
+            venv\Scripts\activate
 
         macOS / Linux
-            source .venv/bin/activate
+            source venv/bin/activate
 
     4. Installeer de benodigde dependencies:
         pip install -r requirements.txt
 
 
-Start de applicatie: python app.py of via flask run
+Start de applicatie: python app.py of via Flask met flask run
 
 
 De applicatie draait nu op: http://127.0.0.1:5000
