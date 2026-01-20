@@ -142,4 +142,3 @@ De applicatie draait nu op: http://127.0.0.1:5000
 - Een export functie tot pdf
 - De gebruiker kan zelf afbeeldingen toevoegen
 - Meer stijlen 
-README.md
