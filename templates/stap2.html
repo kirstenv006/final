@@ -18,7 +18,7 @@
                 <p class="kleine">Invullen indien van toepassing</p>
                 <textarea id="werk" name="werk">{{ session.get('werk', '') }}</textarea>
             </div>
-
+            <!-- Knoppen  -->
             <button type="button" onclick="window.location.href='{{ url_for('stap1') }}'">Vorige</button>
             <button type="submit">Volgende</button>
         </form>

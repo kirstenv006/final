@@ -13,6 +13,7 @@
 
         <div class="persona-kaart {{ laatste_persona.stijl or 'default' }}">
             <div class="persona-kaart-inner">
+                <!-- Laatst gemaakte persona -->
                 <h3>Laatst gemaakte persona:</h3>
                 <h4>{{ laatste_persona.naam }}</h4>
 
@@ -30,12 +31,14 @@
         </div>
     </div>
     {% else %}
+    <!-- Nog geen persona's -->
     <div class="geen_persona">
         <p><em>Maak je eerste persona</em></p>
         <a href="{{ url_for('stap1') }}" class="button">Persona maken</a>
     </div>
     {% endif %}
 
+    <!-- Actie knoppen -->
     <div class="dashboard-knoppen">
         <h3>Selecteer een actie:</h3>
         <a href="{{ url_for('stap1') }}" class="button">Nieuwe persona maken</a><br>

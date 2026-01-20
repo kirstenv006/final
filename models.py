@@ -1,5 +1,6 @@
 from app import db
 
+# Login data
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -7,7 +8,7 @@ class User(db.Model):
 
     personas = db.relationship('Persona', backref='user')
 
-
+# Persona data
 class Persona(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     naam = db.Column(db.String(100))

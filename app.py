@@ -32,6 +32,8 @@ def index():
         return redirect('/dashboard')
     return redirect('/login')
 
+# -----------------------------
+# DASHBOARD
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
@@ -138,7 +140,6 @@ def stap3():
 
     if request.method == 'POST':
         if request.form.get('action') == 'prev':
-            # optioneel: sla huidige session data op
             session['doelen'] = request.form.get('doelen', '')
             session['frustraties'] = request.form.get('frustraties', '')
             session['extravert'] = int(request.form.get('extravert', 3))
@@ -148,7 +149,6 @@ def stap3():
 
             return redirect('/stap2')
 
-        # normale 'Volgende'
         session['doelen'] = request.form.get('doelen', '')
         session['frustraties'] = request.form.get('frustraties', '')
         session['extravert'] = int(request.form.get('extravert', 3))
@@ -161,7 +161,6 @@ def stap3():
     return render_template("stap3.html", step=3)
 
 
-
 # -----------------------------
 # GENERATE – persona opslaan
 @app.route('/generate')
@@ -169,7 +168,6 @@ def generate():
     if 'user_id' not in session:
         return redirect('/login')
 
-    # Alle session data doorgeven aan de template
     persona_data = {
         'naam': session.get('naam'),
         'geslacht': session.get('geslacht'),
@@ -185,16 +183,15 @@ def generate():
         'stijl': session.get('stijl', 'default') 
     }
 
-
     return render_template('result.html', persona=persona_data)
 
-
+# -----------------------------
+# SAVE PERSONA
 @app.route('/save_persona', methods=['POST'])
 def save_persona():
     if 'user_id' not in session:
         return redirect('/login')
 
-    # Veilig omzetten van ints
     def safe_int(value, default=3):
         try:
             return int(value)
@@ -222,11 +219,11 @@ def save_persona():
     db.session.add(persona)
     db.session.commit()
 
-    # Session opschonen
+
     for key in ['naam','geslacht','leeftijd','school','werk','doelen','frustraties','extravert','creatief','intuitief','stress','stijl']:
         session.pop(key, None)
 
-    return redirect('/personas')  # lijst van opgeslagen persona's
+    return redirect('/personas')
 
 
 # -----------------------------
@@ -236,7 +233,6 @@ def result():
     if 'user_id' not in session:
         return redirect('/login')
 
-    # Gebruik de session-data voor weergave
     persona_data = {
         'naam': session.get('naam', ''),
         'geslacht': session.get('geslacht', ''),
@@ -288,7 +284,6 @@ def nieuw_persona():
     if 'user_id' not in session:
         return redirect('/login')
 
-    # Session opschonen
     for key in ['naam','geslacht','leeftijd','school','werk','doelen','frustraties','extravert','creatief','intuitief','stress']:
         session.pop(key, None)
 
@@ -305,12 +300,14 @@ def personas():
     personas = Persona.query.filter_by(user_id=session['user_id']).all()
     return render_template('personas.html', personas=personas)
 
+# Stijl bijwerken
 @app.route("/update_stijl", methods=["POST"])
 def update_stijl():
     data = request.get_json()
     session["stijl"] = data.get("stijl", "default")
     return "", 204
 
+# Bekijk specifieke persona
 @app.route('/persona/<int:persona_id>')
 def view_persona(persona_id):
     if 'user_id' not in session:

@@ -1,6 +1,6 @@
 # De Persona Generator
 
-De Persona Generator is een webtool voor CMD-studenten waarmee zij hun doelgroep kunnen omzetten in een persona. Persona’s zijn fictieve personages die een doelgroep representeren en worden gebruikt om ontwerpen en concepten te testen binnen projecten. De website functioneert als een generator: de gebruiker voert doelgroepkenmerken in, zoals leeftijd, doelen, frustraties en karaktereigenschappen. Op basis van deze input genereert de website een persona. De ingevoerde data wordt opgeslagen in een database, zodat persona’s later opnieuw gebruikt, aangepast of verder ontwikkeld kunnen worden. Dit maakt het understand- en ideate-proces sneller en efficiënter.
+De Persona Generator is een webtool voor CMD-studenten waarmee zij hun doelgroep kunnen omzetten in een persona. Persona’s zijn fictieve personages die een doelgroep representeren en worden gebruikt om ontwerpen en concepten te testen binnen projecten. De website functioneert als een generator: de gebruiker voert doelgroep kenmerken in, zoals leeftijd, doelen, frustraties en karaktereigenschappen. Op basis van deze input genereert de website een persona. De ingevoerde data worden opgeslagen in een database, zodat persona’s later opnieuw gebruikt, aangepast of verder ontwikkeld kunnen worden. Dit maakt het understand- en ideate-proces sneller en efficiënter.
 
 
 # Hoe werkt de Persona Generator? In stappen:
@@ -18,7 +18,7 @@ De Persona Generator is een webtool voor CMD-studenten waarmee zij hun doelgroep
     3. Nieuw persona
 
         3.1 Stap 1
-        De eerste stap is een algemeen profiel creeëren wat voor doelgroep is de persona, hoe heet de persona? hou oud is de persona? en welk geslacht is de persona? 
+        De eerste stap is een algemeen profiel creëren wat voor doelgroep is de persona, hoe heet de persona? hou oud is de persona? en welk geslacht is de persona? 
 
         3.2 Stap 2
         In stap 2 wordt het leven van de persona ingericht. Wat doet die? Studeert hij/zij nog of zit ze nog maar net op de basisschool. Wie weet is de persona al lang afgestudeerd en werkt hij/zij al fulltime. Dit beeld wordt in stap 2 geschetst. 

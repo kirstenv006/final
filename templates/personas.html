@@ -10,6 +10,7 @@
     <h2>Mijn persona’s</h2>
 
     {% if personas %}
+    <!-- Persona overzicht -->
     <div class="persona-overzicht">
 
         {% for p in personas %}
@@ -23,11 +24,11 @@
                     ) }}" alt="Persona">
 
                 <h3>{{ p.naam }}</h3>
-
+                <!-- Simpele informatie aanroepen -->
                 <p><strong>Leeftijd:</strong> {{ p.leeftijd }}</p>
                 <p><strong>School:</strong> {{ p.school }}</p>
                 <p><strong>Werk:</strong> {{ p.werk }}</p>
-
+                <!-- actie knoppen -->
                 <div class="actie-knoppen">
                     <a href="{{ url_for('view_persona', persona_id=p.id) }}" class="button">
                         Bekijk
@@ -48,6 +49,7 @@
 
     </div>
     {% else %}
+    <!-- Nog geen persona's -->
     <p>Er zijn nog geen persona’s opgeslagen.</p>
     {% endif %}
 

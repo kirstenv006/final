@@ -208,26 +208,23 @@ img {
     padding: 12px;
 }
 
-/* Binnenkant */
 .persona-kaart-inner {
     padding: 16px;
     border-radius: 12px;
     text-align: center;
 }
 
-/* Afbeelding */
 .persona-kaart img {
     margin-bottom: 10px;
 }
 
-/* Stijl label */
 .stijl-label {
     font-size: 0.85rem;
     opacity: 0.8;
     margin-top: 10px;
 }
 
-/* DEFAULT */
+/* In mijn persona's overzicht */
 .persona-kaart.default {
     border: 2px solid #2A7B9B;
 }
@@ -290,6 +287,7 @@ img {
 .alles {
     position: relative;
     top: 40px;
+    bottom: 40px;
     left: 0;
     width: 100%;
     display: flex;

@@ -14,6 +14,7 @@
 {% block content %}
 <h2>Hier is {{ persona.naam or 'je persona' }}!</h2>
 <div class="stijl-selector">
+    <!-- Stijl kiezen -->
     <label for="stijl">Kies een stijl:</label>
     <select id="stijl">
         <option value="default">Standaard</option>
@@ -26,6 +27,7 @@
     <div class="result-kaart">
         <!-- Persoonlijke info -->
         <div class="persona-grid">
+            <!-- Afbeelding laden en ophalen-->
             <div class="afbeelding">
                 <img src="{{ url_for('static', filename=(
                     'man.png' if (persona.geslacht or '').lower() == 'man' else
@@ -77,14 +79,14 @@
 {% block extra_js %}
 <script>
     const selector = document.getElementById('stijl');
-
+    // Huidige stijl ophalen en toepassen
     window.addEventListener('load', () => {
         const savedStyle = "{{ huidige_stijl }}";
         document.body.className = savedStyle;
         selector.value = savedStyle;
     });
 
-
+    // Stijl wijzigen en opslaan
     selector.addEventListener('change', () => {
         const stijl = selector.value;
         document.body.className = stijl;
